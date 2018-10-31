@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+
 import { FormBuilder, FormGroup, Validators, FormGroupDirective, NgForm, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationService } from '../service/authentication.service';
@@ -14,6 +15,7 @@ import { CustomValidators } from '../service/custom_validators';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+
   public loginForm: FormGroup;
   public formErrors = {
     email: '',

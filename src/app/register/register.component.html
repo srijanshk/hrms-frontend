@@ -1,0 +1,25 @@
+<div>
+  <mat-card>
+    <section class="mat-typography">
+      <h3>HRMS Register</h3>
+    </section>
+    <mat-divider></mat-divider>
+    <br><br>
+    <form [formGroup]="registerForm"  class="form" novalidate>
+        <mat-form-field>
+            <input name="email" matInput formControlName="email" placeholder="Email" type="email">
+            <mat-error align="start" *ngIf="formErrors.email" class="form__error">{{ formErrors.email }}</mat-error>
+          </mat-form-field>
+
+        <mat-form-field>
+            <input name="password" matInput formControlName="password" placeholder="Password" type="password">
+            <mat-error align="start" *ngIf="formErrors.password" class="form__error">{{ formErrors.password }}</mat-error>
+          </mat-form-field>
+      </form>
+      <mat-card-actions>
+          <button mat-button (click) ="signUp()" [disabled]= "loading" >Sign up</button>
+        </mat-card-actions>
+  </mat-card>
+</div>
+
+
