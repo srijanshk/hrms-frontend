@@ -41,10 +41,6 @@ import { CustomValidators } from './service/custom_validators';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule,
-    MatToolbarModule,
-    MatFormFieldModule,
-    MatInputModule,
     HttpClientModule,
     BrowserAnimationsModule,
     FormsModule,
@@ -60,8 +56,7 @@ import { CustomValidators } from './service/custom_validators';
     MatTableModule,
     MatDividerModule,
     MatSnackBarModule,
-    ReactiveFormsModule,
-    HttpClientModule
+
   ],
   providers: [
   UserService,
