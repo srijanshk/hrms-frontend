@@ -2,7 +2,7 @@ import { FormGroup } from '@angular/forms';
 import { Injectable } from '@angular/core';
 
 @Injectable()
-export class FormService {
+export class FormServices {
 
   // get all values of the formGroup, loop over them
   // then mark each field as touched

@@ -20,7 +20,6 @@ import {
   MatSnackBarModule,
   MatTabsModule,
   MatDatepickerModule,
-  MatDatepickerToggle,
 
 } from '@angular/material';
 import { LoginComponent } from './login/login.component';
@@ -32,7 +31,7 @@ import { JwtInterceptor, ErrorInterceptor } from './Helpers';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CustomValidators } from './service/custom_validators';
 
-import { FormService } from './service/form';
+import { FormServices } from './service/form';
 import { ProfileupdateComponent } from './profiles/profileupdate/profileupdate.component';
 
 
@@ -73,6 +72,7 @@ import { ProfileupdateComponent } from './profiles/profileupdate/profileupdate.c
     AuthGuard,
     AuthenticationService,
     CustomValidators,
+    FormServices,
     FormService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }

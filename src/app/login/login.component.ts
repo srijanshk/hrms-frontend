@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators, FormGroupDirective, NgForm, FormCon
 import { ActivatedRoute, Router } from '@angular/router';
 import { AuthenticationService } from '../service/authentication.service';
 import { first } from 'rxjs/operators';
-import { FormService } from '../service/form';
+import { FormServices } from '../service/form';
 import { MatSnackBar} from '@angular/material';
 import { CustomValidators } from '../service/custom_validators';
 
@@ -31,7 +31,7 @@ export class LoginComponent implements OnInit {
   constructor(
     public form: FormBuilder,
     // tslint:disable-next-line:no-shadowed-variable
-    public FormService: FormService,
+    public FormService: FormServices,
     public snackbar: MatSnackBar,
     private route: ActivatedRoute,
     private router: Router,
