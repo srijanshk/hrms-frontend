@@ -1,3 +1,29 @@
-<p>
-  login works!
-</p>
+
+<div class="wrapper">
+  <br>
+  <mat-card>
+    <section class = "mat-typography">
+      <h3>HRMS Login</h3>
+    </section>
+    <mat-divider></mat-divider>
+    <br><br>
+    <form [formGroup]="loginForm" class="login-form">
+      <mat-form-field class="fullwidth">
+        <input matInput placeholder= "Email" id="email" formControlName="email" type="text"  #email required >
+       <mat-error align="start" *ngIf="formErrors.email" class="form__error">{{ formErrors.email }}</mat-error>
+      </mat-form-field>
+      <br>
+      <br>
+      <mat-form-field class= "fullwidth">
+        <input matInput placeholder= "Password"  formControlName="password" type="password" required   #password >
+        <mat-error align="start" *ngIf="formErrors.password" class="form__error">{{ formErrors.password }}</mat-error>
+
+      </mat-form-field>
+      <mat-divider></mat-divider>
+      <br><br>
+      <br><br>
+      <button type="submit" (click)="onSubmit(email.value, password.value)" mat-raised-button color="primary">Login</button>
+    </form>
+  </mat-card>
+</div>
+
