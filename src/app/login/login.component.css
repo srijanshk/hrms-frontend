@@ -1,0 +1,14 @@
+.mat-card-header .h3 {
+  position:absolute;
+  left: 0;
+  top: 0;
+}
+.mat-card  {
+  position:absolute;
+  left:0;
+   top: 0;
+  width:100%;
+   text-align: center;
+ }
+
+

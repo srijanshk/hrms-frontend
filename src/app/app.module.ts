@@ -16,7 +16,10 @@ import {
   MatCardModule,
   MatTableModule,
   MatDividerModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatTabsModule,
+  MatDatepickerModule,
+  MatDatepickerToggle,
 } from '@angular/material';
 
 import { LoginComponent } from './login/login.component';
@@ -28,6 +31,7 @@ import { JwtInterceptor, ErrorInterceptor } from './Helpers';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CustomValidators } from './service/custom_validators';
 import { FormService } from './service/form';
+import { ProfileupdateComponent } from './profiles/profileupdate/profileupdate.component';
 
 
 
@@ -35,7 +39,8 @@ import { FormService } from './service/form';
   declarations: [
     AppComponent,
     DashboardComponent,
-    LoginComponent
+    LoginComponent,
+    ProfileupdateComponent
   ],
   imports: [
     BrowserModule,
@@ -54,7 +59,9 @@ import { FormService } from './service/form';
     MatCardModule,
     MatTableModule,
     MatDividerModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatTabsModule,
+    MatDatepickerModule,
 
   ],
   providers: [
