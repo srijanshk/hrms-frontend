@@ -18,6 +18,10 @@ import {
   MatTableModule,
   MatDividerModule,
   MatSnackBarModule,
+  MatTabsModule,
+  MatDatepickerModule,
+  MatDatepickerToggle,
+
 } from '@angular/material';
 import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
@@ -28,6 +32,9 @@ import { JwtInterceptor, ErrorInterceptor } from './Helpers';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CustomValidators } from './service/custom_validators';
 
+import { FormService } from './service/form';
+import { ProfileupdateComponent } from './profiles/profileupdate/profileupdate.component';
+
 
 
 
@@ -36,7 +43,8 @@ import { CustomValidators } from './service/custom_validators';
     AppComponent,
     RegisterComponent,
     DashboardComponent,
-    LoginComponent
+    LoginComponent,
+    ProfileupdateComponent
   ],
   imports: [
     BrowserModule,
@@ -56,6 +64,8 @@ import { CustomValidators } from './service/custom_validators';
     MatTableModule,
     MatDividerModule,
     MatSnackBarModule,
+    MatTabsModule,
+    MatDatepickerModule,
 
   ],
   providers: [
