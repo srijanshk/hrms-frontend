@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 
 import { User } from '../models/user';
 
+
 import { environment } from '../../environments/environment';
 
 @Injectable()
@@ -12,6 +13,7 @@ export class UserService {
   register(user: User) {
     return this.http.post(`${environment.apiUrl}/auth/register`, user);
   }
+
 
 
 }

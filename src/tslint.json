@@ -12,6 +12,8 @@
             "element",
             "app",
             "kebab-case"
-        ]
+        ],
+        "no-var-keyword": false,
+        "no-inferrable-types" : false
     }
 }

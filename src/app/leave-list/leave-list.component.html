@@ -1,0 +1,45 @@
+<mat-tab-group>
+<mat-tab label="Leave List">
+    <table mat-table [dataSource]="leavelistsource" width="100%">
+
+      <!-- <ng-container matColumnDef="employeename">
+        <th mat-header-cell *matHeaderCellDef> Employee List</th>
+        <th mat-cell *matCellDef="let element">{{element.employeename}}</th>
+      </ng-container> -->
+
+      <ng-container matColumnDef="leaveType">
+        <th mat-header-cell *matHeaderCellDef> Leave Type</th>
+        <th mat-cell *matCellDef="let user">{{user.leaveType}}</th>
+      </ng-container>
+
+      <ng-container matColumnDef="start_date">
+        <th mat-header-cell *matHeaderCellDef> <br/> Start Date  </th>
+        <th mat-cell *matCellDef="let user">{{user.start_date}}</th>
+      </ng-container>
+
+      <ng-container matColumnDef="end_date">
+        <th mat-header-cell *matHeaderCellDef> <br/> End Date <br/> </th>
+        <th mat-cell *matCellDef="let user">{{user.end_date}}</th>
+      </ng-container>
+
+      <ng-container matColumnDef="selectTypeOfDays">
+        <th mat-header-cell *matHeaderCellDef> Type of Days</th>
+        <th mat-cell *matCellDef="let user">{{user.selectTypeOfDays}}</th>
+      </ng-container>
+
+      <ng-container matColumnDef="noOfDays">
+        <th mat-header-cell *matHeaderCellDef>Number of Days</th>
+        <th mat-cell *matCellDef="let user">{{user.noOfDays}}</th>
+      </ng-container>
+
+      <ng-container matColumnDef="leaveReason">
+        <th mat-header-cell *matHeaderCellDef>Leave Reason</th>
+        <th mat-cell *matCellDef="let user">{{user.leaveReason}}</th>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedLeaveListColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedLeaveListColumns;"></tr>
+
+    </table>
+  </mat-tab>
+</mat-tab-group>

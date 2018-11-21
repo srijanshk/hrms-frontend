@@ -1,0 +1,126 @@
+<mat-card class="my-card">
+  <mat-tab-group>
+     <mat-tab label="Apply Leave">
+
+      <br>
+      <form [formGroup]="leaveForm">
+        <table style="width:100%">
+          <tr>
+            <td>
+              <mat-form-field class="full-width">
+
+                <mat-select placeholder="Leave Type"  name="leave" [formControl]="leaveType"  required>
+                  <mat-option *ngFor="let leave of leaves" [value]="leave.value">{{leave.viewValue}}
+                  </mat-option>
+                 </mat-select>
+                 <mat-hint>Choose a Leave Type</mat-hint>
+                 <mat-error *ngIf = "leaveType.invalid">{{getleaveTypeErrorMessage()}} </mat-error>
+              </mat-form-field>
+            </td>
+          </tr>
+          <br>
+          <tr>
+            <td>
+             <mat-radio-group class="radio-group" formControlName="selectTypeOfDays">
+               <mat-radio-button class="radio-button" value="Single Day" (click)="focusOnSingleDay()" (click)="toggle()">Single Day</mat-radio-button>
+               <mat-radio-button class= "radio-button" value="Multiple Days" (click)="focusOnMultipleDays()" (click)="toggle()">Multiple Days</mat-radio-button>
+             </mat-radio-group>
+
+            </td>
+          </tr>
+          <br>
+          <ng-container *ngIf="show">
+          <tr>
+            <td>
+              <mat-form-field class="full-width" >
+                <input matInput [matDatepickerFilter]="myFilter1" [matDatepicker]="picker1" placeholder="Choose a start date"
+                  [formControl] ="start_date" id="start_date">
+                <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+                <mat-datepicker #picker1></mat-datepicker>
+
+              </mat-form-field>
+            </td>
+            <td>
+              <mat-form-field class="full-width">
+                <input matInput [min]="minDate" [max]="maxDate" [matDatepickerFilter]="myFilter2" [matDatepicker]="picker2" placeholder="Choose an end date"
+                  [formControl] ="end_date" id="end_date" >
+                <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                <mat-datepicker #picker2></mat-datepicker>
+              </mat-form-field>
+            </td>
+          </tr>
+
+          <tr>
+            <td>
+              <mat-radio-group class= "radio-group" formControlName="noOfDays">
+                <mat-radio-button class="radio-button" [value]="BusinessDates()">Confirm Dates</mat-radio-button>
+               <!-- <input  matInput type="number" placeholder="Number of Days" formControlName ="noOfDays" [value]="BusinessDates()" autocomplete="off" required> -->
+               </mat-radio-group>
+            </td>
+          </tr>
+        </ng-container>
+          <tr>
+            <td>
+              <mat-form-field class="full-width" hintLabel = "Maximum 30 characters">
+                <textarea matInput #input maxlength="30" placeholder="Reason for Leave " [formControl]="leaveReason" required maxlength="30"></textarea>
+                <mat-error *ngIf="leaveReason.invalid">{{getleaveReasonErrorMessage()}}</mat-error>
+                <mat-hint align = "end">{{input.value?.length || 0}}/30</mat-hint>
+              </mat-form-field>
+            </td>
+          </tr>
+        </table>
+      </form>
+      <mat-card-actions>
+        <button mat-raised-button color="primary" (click)="leavesubmit()" [disabled]="loading">Confirm</button>
+      </mat-card-actions>
+       </mat-tab>
+
+
+
+
+
+    <mat-tab label="Leave Records">
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+      </mat-form-field>
+
+      <table mat-table [dataSource]="leaveformsource" width="100%">
+
+        <ng-container matColumnDef="leaveType">
+          <th mat-header-cell *matHeaderCellDef> Leave Type </th>
+          <td mat-cell *matCellDef="let element">{{element.leaveType}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="start_date">
+          <th mat-header-cell *matHeaderCellDef> Start Date <br /> </th>
+          <td mat-cell *matCellDef="let element">{{element.start_date}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="end_date">
+          <th mat-header-cell *matHeaderCellDef> End Date <br /> </th>
+          <td mat-cell *matCellDef="let element">{{element.end_date}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="selectTypeOfDays">
+          <th mat-header-cell *matHeaderCellDef> Type of Days <br /> </th>
+          <td mat-cell *matCellDef="let element">{{element.selectTypeOfDays}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="noOfDays">
+          <th mat-header-cell *matHeaderCellDef> Number of Days </th>
+          <td mat-cell *matCellDef="let element">{{element.noOfDays}}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="leaveReason">
+          <th mat-header-cell *matHeaderCellDef>Leave Reason</th>
+          <td mat-cell *matCellDef="let element">{{element.leaveReason}}</td>
+        </ng-container>
+
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      <mat-paginator [pageSize] = "5" [pageSizeOptions]="[10, 25 ]"></mat-paginator>
+    </mat-tab>
+  </mat-tab-group>
+</mat-card>

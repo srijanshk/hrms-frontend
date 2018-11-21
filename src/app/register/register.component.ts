@@ -39,6 +39,7 @@ export class RegisterComponent implements OnInit {
     // if not, we pass the form to the validateform function again. Now with check dirty false
     // this means we check every form field independent of wether it's touched
     if (this.registerForm.valid) {
+      console.log(this.registerForm.value);
       this.userService.register(this.registerForm.value)
       .pipe(first())
       .subscribe(

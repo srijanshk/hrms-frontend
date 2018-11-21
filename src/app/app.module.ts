@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { RegisterComponent } from './register/register.component';
 import { UserService } from './services/user.service';
+import { LeaveFormService } from './services/leaveFormModel.services';
 import { FormService } from './services/form';
 import {
   MatToolbarModule,
@@ -20,6 +21,15 @@ import {
   MatSnackBarModule,
   MatTabsModule,
   MatDatepickerModule,
+  MatNativeDateModule,
+  MatButtonToggle,
+  MatSliderModule,
+  MatCheckboxModule,
+  MatRadioModule,
+  MatAutocompleteModule,
+  MatPaginatorModule
+
+
 
 } from '@angular/material';
 import { LoginComponent } from './login/login.component';
@@ -33,6 +43,9 @@ import { CustomValidators } from './service/custom_validators';
 
 import { FormServices } from './service/form';
 import { ProfileupdateComponent } from './profiles/profileupdate/profileupdate.component';
+import { LeaveFormComponent } from './leave-form/leave-form.component';
+import { LeaveListComponent } from './leave-list/leave-list.component';
+import { LeavelistService } from './services/leavelist.service';
 
 
 
@@ -43,7 +56,9 @@ import { ProfileupdateComponent } from './profiles/profileupdate/profileupdate.c
     RegisterComponent,
     DashboardComponent,
     LoginComponent,
-    ProfileupdateComponent
+    ProfileupdateComponent,
+    LeaveFormComponent,
+    LeaveListComponent
   ],
   imports: [
     BrowserModule,
@@ -65,10 +80,20 @@ import { ProfileupdateComponent } from './profiles/profileupdate/profileupdate.c
     MatSnackBarModule,
     MatTabsModule,
     MatDatepickerModule,
+    MatNativeDateModule,
+    MatButtonModule,
+    MatSliderModule,
+    MatCheckboxModule,
+    MatRadioModule,
+    MatAutocompleteModule,
+    MatPaginatorModule,
+    ReactiveFormsModule.withConfig({warnOnNgModelWithFormControl: 'never'})
 
   ],
   providers: [
   UserService,
+    LeaveFormService,
+    LeavelistService,
     AuthGuard,
     AuthenticationService,
     CustomValidators,
