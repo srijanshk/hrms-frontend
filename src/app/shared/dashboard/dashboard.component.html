@@ -1,0 +1,71 @@
+<mat-toolbar color="white">
+  <mat-toolbar-row>
+      <button type="button" aria-label="Toggle sidenav" mat-icon-button (click)="drawer.toggle()" color="primary">
+      <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+    </button>
+    <img src="./assets/seva.png">
+    <span class="fill-space"></span>
+    <!-- <mat-select>
+      <mat-option class="toolbar-spacing toolbar-font" (click)="logOut()"><img src="./assets/log-out.png"></mat-option>
+    </mat-select> -->
+    <div *ngIf="isAdmin()">
+    <button mat-raised-button color="Primary" (click)="ManageRoles()">Manage Roles</button></div>
+    <button mat-raised-button color="Primary" [matMenuTriggerFor]="menu"><mat-icon>person_outline</mat-icon>My Profile</button>
+
+    <mat-menu #menu="matMenu">
+        <button mat-menu-item [matMenuTriggerFor]="profile"><mat-icon>person</mat-icon>Profile</button>
+        <button mat-menu-item routerLink="/changepassword"><mat-icon>settings</mat-icon>Change Password</button>
+        <button mat-menu-item (click)="logOut()"><mat-icon>exit_to_app</mat-icon>Logout</button>
+   </mat-menu>
+
+   <mat-menu #profile="matMenu">
+      <button mat-menu-item routerLink = "/dashboard/user/profile/create"><mat-icon>person_add</mat-icon>Profile</button>
+    <button mat-menu-item (click) = "editOwnProfile()"><mat-icon>edit</mat-icon>Edit Profile</button>
+    <button mat-menu-item (click)="viewOwnProfile()"><mat-icon>person</mat-icon>View Profile</button>
+   </mat-menu>
+
+  </mat-toolbar-row>
+</mat-toolbar>
+<mat-sidenav-container class="example-container">
+  <mat-sidenav #drawer mode="side" opened role="navigation">
+    <mat-nav-list>
+      <div *ngIf='isAdmin() || isManager() || isHR() || isEmployee()'>
+        <a mat-list-item routerLink='/dashboard/home'><mat-icon mat-list-icon>home</mat-icon>Home</a>
+      </div>
+      <div *ngIf='isAdmin() || isManager() || isHR() || isEmployee()'>
+        <a mat-list-item routerLink='/dashboard/user'><mat-icon mat-list-icon>people</mat-icon>Employees</a>
+       </div>
+      <div *ngIf='isAdmin() || isManager() || isHR() || isEmployee()'>
+        <a mat-list-item routerLink='/dashboard/leave'><mat-icon mat-list-icon>weekend</mat-icon>Leave</a>
+      </div>
+      <div *ngIf='isAdmin() || isManager() || isHR()'>
+        <a mat-list-item routerLink='/dashboard/recruitment'><mat-icon mat-list-icon>fiber_new</mat-icon>Recruitment</a>
+      </div>
+
+      <div *ngIf = 'isAdmin() || isManager() || isHR() || isEmployee()'>
+        <a mat-list-item routerLink='/dashboard/inventory'><mat-icon mat-list-icon>store</mat-icon>Inventory Management</a>
+      </div>
+      <div *ngIf='isAdmin() || isManager() || isHR()'>
+        <a mat-list-item routerLink='/dashboard/candidate'><mat-icon mat-list-icon>how_to_reg</mat-icon>Candidate</a>
+      </div>
+      <div *ngIf='isAdmin() || isManager() || isHR() || isEmployee()'>
+        <!-- use expansion panel for heading item with sub page links -->
+        <mat-expansion-panel class="mat-elevation-z0">
+          <mat-expansion-panel-header><mat-icon mat-list-icon>assessment</mat-icon>Assessment</mat-expansion-panel-header>
+          <div *ngIf='isAdmin() || isManager() || isHR()'>
+            <a mat-list-item routerLink='/dashboard/createAssessment'><mat-icon mat-list-icon>assignment_turned_in</mat-icon>Create Assessment</a>
+          </div>
+          <div *ngIf='isAdmin() || isManager() || isHR() || isEmployee()'>
+            <a mat-list-item routerLink='/dashboard/takeAssessment'><mat-icon mat-list-icon>assignment_returned</mat-icon>Take Assessment</a>
+          </div>
+        </mat-expansion-panel>
+      </div>
+      <div *ngIf='isAdmin() || isManager() || isHR()'>
+        <a mat-list-item routerLink='/dashboard/payroll'><mat-icon mat-list-icon>payment</mat-icon>Payroll</a>
+      </div>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

@@ -1,0 +1,20 @@
+table {
+  width: 100%;
+}
+
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+td, th {
+  width: 10%;
+}
+
+.example-container {
+  overflow: auto;
+  height: 450px;
+}
+.list-user {
+  padding: 0 0 70px;
+}

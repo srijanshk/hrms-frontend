@@ -1,0 +1,15 @@
+.container {
+  padding-top: 10px;
+  margin-top: 10px;
+}
+
+
+
+mat-header-cell, mat-cell {
+  width: 10%;
+}
+.list-user {
+padding-bottom: 70px;
+}
+
+

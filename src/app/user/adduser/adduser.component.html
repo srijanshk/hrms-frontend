@@ -1,0 +1,89 @@
+<div class="wrapper">
+  <mat-card>
+    <section class="mat-typography">
+      <h3>Add User</h3>
+    </section>
+    <mat-divider></mat-divider>
+    <br><br>
+    <form [formGroup]="AddUserForm" class="form" novalidate>
+        <div class="card-layout" >
+            <div class ="column-1">
+      <mat-form-field class="fullwidth">
+          <input name="email" matInput formControlName="email" placeholder="Email" type="email" #email>
+          <mat-error align="start" *ngIf="formErrors.email" class="form__error">{{ formErrors.email }}</mat-error>
+      </mat-form-field>
+      <br><br>
+      <mat-form-field class="fullwidth">
+          <mat-label>Role</mat-label>
+          <mat-select role="role" formControlName="role" type="role" #role>
+              <mat-option value= "admin">Admin</mat-option>
+              <mat-option value= "hr">HR</mat-option>
+              <mat-option value = "manager">Manager</mat-option>
+              <mat-option value = "employee">Employee</mat-option>
+
+          </mat-select>
+
+          <mat-error align="start" *ngIf="formErrors.role" class="form__error">{{ formErrors.role }}</mat-error>
+      </mat-form-field>
+      <br><br>
+      <mat-form-field class="fullwidth">
+          <mat-label>Branch</mat-label>
+          <mat-select branch="role" formControlName="branch" type="branch" #role>
+              <mat-option value= "Pokhara">Pokhara</mat-option>
+              <mat-option value= "Lamjung">Lamjung</mat-option>
+              <mat-option value = "Kathmandu">Kathmandu</mat-option>
+              <mat-option value = "Utah">Utah</mat-option>
+
+          </mat-select>
+          <mat-error align="start" *ngIf="formErrors.branch" class="form__error">{{ formErrors.branch }}</mat-error>
+
+      </mat-form-field>
+      <br><br>
+      <mat-form-field class="fullwidth">
+          <input name="lineManager" matInput formControlName="lineManager" placeholder="Line Manager" type="lineManager" #lineManger>
+          <mat-error align="start" *ngIf="formErrors.lineManager" class="form__error">{{ formErrors.lineManager }}</mat-error>
+      </mat-form-field>
+    </div>
+    <div class="column-2">
+      <mat-form-field class="fullwidth">
+          <input name="fullname" matInput formControlName="fullname" placeholder="Full Name" type="fullname" #fullname>
+          <mat-error align="start" *ngIf="formErrors.fullname" class="form__error">{{ formErrors.fullname }}</mat-error>
+      </mat-form-field>
+      <br><br>
+      <mat-form-field class="fullwidth">
+          <mat-label>Designation</mat-label>
+          <mat-select name="post" matInput formControlName="post"  type="post" #post>
+            <mat-option value="CEO">CEO</mat-option>
+            <mat-option value="CFO">CFO</mat-option>
+            <mat-option value="CRM">CRM</mat-option>
+            <mat-option value="Country Director">Country Director</mat-option>
+            <mat-option value="Regional Manager">Regional Manager</mat-option>
+            <mat-option value="QA Manager">QA Manager</mat-option>
+            <mat-option value="Finace Manager">Finance Manager</mat-option>
+            <mat-option value="HR & Admin ">HR & Admin </mat-option>
+            <mat-option value="System Engineer">System Engineer</mat-option>
+            <mat-option value="Senior Software Engineer">Senior Software Engineer</mat-option>
+            <mat-option value="Software Engineer">Software Engineer</mat-option>
+            <mat-option value="Associate Software Engineer">Associate Software Engineer</mat-option>
+            <mat-option value="Intern">Intern</mat-option>
+            <mat-option value="Trainee">Trainee</mat-option>
+
+        </mat-select>
+        <mat-error align="start" *ngIf="formErrors.post" class="form__error">{{ formErrors.post }}</mat-error>
+      </mat-form-field>
+      <br><br>
+      <mat-form-field class="fullwidth">
+          <input name="contactNo" matInput formControlName="contactNo" placeholder="Contact Number" type="contactNo" #contactNo>
+          <mat-error align="start" *ngIf="formErrors.contactNo" class="form__error">{{ formErrors.contactNo }}</mat-error>
+      </mat-form-field>
+
+    </div>
+  </div>
+    </form>
+    <mat-card-actions class="fullwidth">
+        <button mat-raised-button (click) ="addUser()" >Add User</button>
+      </mat-card-actions>
+  </mat-card>
+
+
+</div>

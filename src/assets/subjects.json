@@ -1,0 +1,28 @@
+{"questions": [
+    {
+        "category": "Database",
+        "subjects":[
+            {"subject":"SQL", "description":"sql related questions"},
+            {"subject":"DOTNET", "description":"dotnet related questions"},
+            {"subject":"CSharp", "description":"c# related questions"}
+        ]
+    },
+    {
+        "category": "Web",
+        "subjects":[
+            {"subject":"ANGULAR", "description":"angular related questions"},
+            {"subject":"JAVA", "description":"java related questions"},
+            {"subject":"JAVASCRIPT", "description":"javascript related questions"},
+            {"subject":"REACT", "description":"react related questions"}
+        ]
+    },
+    {
+        "category": "Other",
+        "subjects" :[
+            {"subject":"AUTOMATION TESTING", "description":"automation testing related questions"},
+            {"subject":"DISTRIBUTED SYSTEMS", "description":"distributed system related questions"},
+            {"subject":"CLOUD COMPUTING", "description":"cloud computing related questions"}
+        ]
+    }
+    ]
+}

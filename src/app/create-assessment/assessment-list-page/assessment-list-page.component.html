@@ -1,0 +1,39 @@
+<div>
+  <div class="row"> 
+    <div class="col-md-10">
+      <b>{{subject}}</b> Question List
+    </div>
+    <div class="col-md-offset-10 col-md-2">
+      <a [routerLink]="['/dashboard/createAssessment/create', subject]">Create Question</a>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="table-responsive">
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th class="col-sm-10">Questions</th>
+              <th class="col-sm-2">Questions Type</th>
+              <th class="col-sm-3">Update</th>
+              <th class="col-sm-3">Delete</th>
+            </tr>
+          </thead>
+          <tbody *ngIf="totalQuestions > 0">
+            <tr *ngFor="let question of questions.questions">
+              <td class="col-sm-10">{{question.question}}</td>
+              <td class="col-sm-2">{{question.type}}</td>
+              <td class="col-sm-3"><button type="button" id="update" class="btn btn-success" (click)="updateQuestion(question)">Update</button></td>
+              <td class="col-sm-3"><button type="button" id="delete" class="btn btn-danger" (click)="deleteQuestion(question)">Delete</button></td>
+            </tr>
+          </tbody>
+          <tbody *ngIf="totalQuestions == 0">
+              <p>{{errorMessage}}</p>
+              <p>{{createMessage}}</p>
+            </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,76 @@
+<mat-card class="list-position">
+    <button mat-raised-button (click) ="onCreate()"><mat-icon>add</mat-icon>Add Position</button>
+    <mat-card-content style="padding-top: 10px; margin-top: 10px;">
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+
+
+<div class="mat-elevation-z8">
+
+    <mat-table [dataSource] = "positionsource" matSort >
+      <ng-container  matColumnDef="sn"><input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> SN. </mat-header-cell>
+        <mat-cell *matCellDef="let position; let i = index;"> {{i+1+(pageSize*pageIndex)}} </mat-cell>
+      </ng-container>
+      <ng-container  matColumnDef="title">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Title </mat-header-cell> 
+        <mat-cell *matCellDef= "let position" > {{position.title}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="status">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Status </mat-header-cell>
+        <mat-cell *matCellDef= "let position"> {{position.status}} </mat-cell>
+      </ng-container>
+    <ng-container matColumnDef="requiredExperience">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Required Experience </mat-header-cell>
+        <mat-cell *matCellDef= "let position"> {{position.requiredExperience}} </mat-cell>
+      </ng-container>
+       
+       <ng-container matColumnDef="noOfApplicants">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> No. of Applicants </mat-header-cell>
+        <mat-cell *matCellDef= "let position"> {{position.noOfApplicants}} </mat-cell>
+      </ng-container>
+
+      <ng-container matColumnDef="applyingForPosition">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Applying For Position </mat-header-cell>
+        <mat-cell *matCellDef= "let position"> {{position.applyingForPosition}} </mat-cell>
+      </ng-container>
+    
+      <ng-container matColumnDef="startDate">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>Opening Date </mat-header-cell>
+            <mat-cell *matCellDef="let position"> {{position.startDate | date: 'MMM dd, y' : 'UTC'}} </mat-cell>
+          </ng-container>
+
+          <ng-container matColumnDef="endDate">
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Last Date </mat-header-cell>
+            <mat-cell *matCellDef="let position"> {{position.endDate | date: 'MMM dd, y' : 'UTC'}} </mat-cell>
+          </ng-container>
+
+     
+       <ng-container matColumnDef="edit">
+         <mat-header-cell *matHeaderCellDef> Edit </mat-header-cell>
+         <mat-cell *matCellDef="let position">
+           <button mat-icon-button (click)="onEdit(position)"><mat-icon>launch</mat-icon></button>
+         </mat-cell>
+       </ng-container>
+             
+       <ng-container matColumnDef="delete">
+         <mat-header-cell *matHeaderCellDef> Delete </mat-header-cell>
+         <mat-cell *matCellDef="let position">
+            <button mat-icon-button (click)="onDelete(position.id)" class="btn btn-block btn-sm btn-info">
+             <mat-icon>delete</mat-icon>
+            </button>  
+         </mat-cell>
+       </ng-container>
+      
+      
+      
+      <mat-header-row  *matHeaderRowDef="displayedColums"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColums;"></mat-row>
+    </mat-table>
+
+<mat-paginator [pageSizeOptions]="[5, 10, 20, 50]" showFirstLastButtons (page)="onPaginateChange($event)"></mat-paginator>
+</div>
+</mat-card-content>
+</mat-card>
+

@@ -1,0 +1,69 @@
+<br>
+<mat-card-content class="styles">
+  <button mat-raised-button  (click)="onCreate()">
+    <mat-icon>add</mat-icon>Create
+  </button>
+<mat-form-field class="filter">
+  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+</mat-form-field>
+
+<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+  <ng-container matColumnDef="sn"><input matInput placeholder="Filter">
+    <th mat-header-cell *matHeaderCellDef> SN. </th>
+    <td mat-cell *matCellDef="let device; let i = index;"> {{i+1+(pageSize*pageIndex)}} </td>
+  </ng-container>
+  <ng-container matColumnDef="applied_by">
+    <th mat-header-cell *matHeaderCellDef> Applied By </th>
+    <td mat-cell *matCellDef="let device"> {{device.email}} </td>
+  </ng-container>
+  <ng-container matColumnDef="name">
+    <th mat-header-cell *matHeaderCellDef> Name </th>
+    <td mat-cell *matCellDef="let device ">{{device.name}}</td>
+  </ng-container>
+
+  
+  <ng-container matColumnDef="project">
+    <th mat-header-cell *matHeaderCellDef> Project </th>
+    <td mat-cell *matCellDef="let device">{{device.project}}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="device">
+          <th mat-header-cell *matHeaderCellDef> Device </th>
+          <td mat-cell *matCellDef="let device">{{device.device}}</td>
+        </ng-container>
+        <ng-container matColumnDef="startdate">
+            <th mat-header-cell *matHeaderCellDef> Start date </th>
+            <td mat-cell *matCellDef="let device">{{device.startdate}}</td>
+          </ng-container>
+          
+            <ng-container matColumnDef="enddate">
+                <th mat-header-cell *matHeaderCellDef> End date </th>
+                <td mat-cell *matCellDef="let device">{{device.enddate}}</td>
+              </ng-container>
+              <ng-container matColumnDef="edit">
+                  <th mat-header-cell *matHeaderCellDef> Edit </th>
+                  <td mat-cell *matCellDef="let device">
+                      <button mat-icon-button (click)="onEdit(device.id)"><mat-icon>launch</mat-icon></button>
+                  </td>
+                </ng-container>
+             
+                <ng-container matColumnDef="delete">
+                    <th mat-header-cell *matHeaderCellDef> Delete </th>
+                    <td mat-cell *matCellDef="let device">
+                       
+                        <button mat-icon-button (click)="onDelete(device.id)" class="btn btn-block btn-sm btn-info">
+                          <mat-icon>delete</mat-icon>
+            </button>  
+                            
+                    </td>
+                    
+                  </ng-container>
+
+                
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+</table>
+
+<mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+</mat-card-content>

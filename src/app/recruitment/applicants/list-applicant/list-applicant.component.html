@@ -1,0 +1,78 @@
+<mat-card class="list-applicant">
+    <button mat-raised-button (click) ="onCreate()"><mat-icon>add</mat-icon>Add Applicant</button>
+    
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+  <mat-card-content>
+
+<div class="mat-elevation-z8">
+
+    <mat-table [dataSource] = "applicantsource" matSort >
+      <ng-container  matColumnDef="sn"><input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> SN. </mat-header-cell>
+        <mat-cell *matCellDef="let applicant; let i = index;"> {{i+1+(pageSize*pageIndex)}} </mat-cell>
+      </ng-container>
+      <ng-container  matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell> 
+        <mat-cell *matCellDef= "let applicant" > {{applicant.name}} </mat-cell>
+      </ng-container>
+       <ng-container  matColumnDef="applyingFor">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Applying For </mat-header-cell> 
+        <mat-cell *matCellDef= "let applicant" > {{applicant.applyingFor.name}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="description">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Description </mat-header-cell>
+        <mat-cell *matCellDef= "let applicant"> {{applicant.description}} </mat-cell>
+      </ng-container>
+    <ng-container matColumnDef="stage">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Stage </mat-header-cell>
+        <mat-cell *matCellDef= "let applicant"> {{applicant.stage}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="resume">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Resume </mat-header-cell>
+        <mat-cell *matCellDef= "let applicant"> {{applicant.resume}} </mat-cell>
+      </ng-container>
+    <ng-container matColumnDef="email">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Email </mat-header-cell>
+        <mat-cell *matCellDef= "let applicant"> {{applicant.email}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="phone">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Phone </mat-header-cell>
+        <mat-cell *matCellDef= "let applicant"> {{applicant.phone}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="appliedDate">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Applied Date </mat-header-cell>
+        <mat-cell *matCellDef= "let applicant"> {{applicant.appliedDate}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="remarks">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Remarks </mat-header-cell>
+        <mat-cell *matCellDef= "let applicant"> {{applicant.remarks}} </mat-cell>
+      </ng-container>
+       <ng-container matColumnDef="edit">
+         <mat-header-cell *matHeaderCellDef> Edit </mat-header-cell>
+         <mat-cell *matCellDef="let applicant">
+           <button mat-icon-button (click)="onEdit(applicant)"><mat-icon>launch</mat-icon></button>
+         </mat-cell>
+       </ng-container>
+             
+       <ng-container matColumnDef="delete">
+         <mat-header-cell *matHeaderCellDef> Delete </mat-header-cell>
+         <mat-cell *matCellDef="let applicant">
+            <button mat-icon-button (click)="onDelete(applicant.id)" class="btn btn-block btn-sm btn-info">
+             <mat-icon>delete</mat-icon>
+            </button>  
+         </mat-cell>
+       </ng-container>
+      
+      
+      
+      <mat-header-row  *matHeaderRowDef="displayedColums"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColums;"></mat-row>
+    </mat-table>
+
+<mat-paginator [pageSizeOptions]="[5, 10, 20, 50]" showFirstLastButtons (page)="onPaginateChange($event)"></mat-paginator>
+</div>
+</mat-card-content>
+</mat-card>
+

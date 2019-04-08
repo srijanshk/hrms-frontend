@@ -1,0 +1,26 @@
+{
+    "assessment":
+    [
+        {
+            "questionId":1,
+            "question":"ASP.NET webform separates the HTML output from program logic using a feature named as",
+            "answers": ["Exception", "Code-behind","Code-front", "None of the above"],
+            "correctAnswer":"Code-behind",
+            "time": 10
+        },
+        {
+            "questionId": 2,
+            "question": "The feature in ASP.NET 2.0 that is used to fire a normal postback to a different page in the application is called",
+            "answers": ["Theme", "Code-front", "Cross Page Posting", "None of the above"],
+            "correctAnswer":"Cross Page Posting",
+            "time": 15
+        },
+        {
+            "questionId": 3,
+            "question": "What class does the ASP.NET Web Form class inherit from by default?",
+            "answers": ["System.Web.UI.Page", "System.Web.UI.Form", "System.Web.GUI.Page", "System.Web.Form"],
+            "correctAnswer":"System.Web.UI.Page",
+            "time":100
+        }
+    ]
+}

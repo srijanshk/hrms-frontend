@@ -1,0 +1,54 @@
+
+  <mat-card>
+    <section class = "mat-typography">
+      <h3> Add Devices</h3>
+    </section>
+    
+    
+    <form [formGroup] = "InventoryFields" clas = "form" >
+      <div class = "card-layout">
+        <div class = "column-1">
+          <mat-form-field class = "fullwidth">
+            <input name= "Full Name" matInput formControlName= "name" placeholder="Name" type ="name" #name>
+            <mat-error align ="start" *ngIf="formErrors.name" class= "form_error">{{formErrors.name}}</mat-error>
+          </mat-form-field>
+          <br/>
+          <mat-form-field class = "fullwidth">
+            <input name= "Project" matInput formControlName= "project" placeholder="Project" type ="project" #project>
+            <mat-error align ="start" *ngIf="formErrors.project" class= "form_error">{{formErrors.project}}</mat-error>
+          </mat-form-field>
+          <br/>
+          <mat-form-field class = "fullwidth">
+            <input name= "Device" matInput formControlName= "device" placeholder="Device" type ="device" #device>
+            <mat-error align ="start" *ngIf="formErrors.device" class= "form_error">{{formErrors.device}}</mat-error>
+          </mat-form-field>
+          <br/>
+          <mat-form-field class = "fullwidth">
+            <input  matInput [matDatepicker] = "startdate" formControlName = "startdate" placeholder="Start Date" type = "startdate" required>
+            <mat-datepicker-toggle matSuffix [for] = "startdate"></mat-datepicker-toggle>
+          <mat-datepicker #startdate></mat-datepicker>
+          <mat-error align ="start" *ngIf="formErrors.startdate" class= "form_error">{{formErrors.startdate}}</mat-error>
+          </mat-form-field>
+          <br/>
+          <mat-form-field class = "fullwidth">
+            <input  matInput [matDatepicker] = "enddate" placeholder="End Date" type= "enddate" formControlName = "enddate" required>
+            <mat-datepicker-toggle matSuffix [for] = "enddate"></mat-datepicker-toggle>
+          <mat-datepicker #enddate></mat-datepicker>
+          <mat-error align ="start" *ngIf="formErrors.enddate" class= "form_error">{{formErrors.enddate}}</mat-error>
+          </mat-form-field>
+          <br/>
+          <div class="form-row">
+            <div class="col-lg-8"></div>
+          <div class="col-lg-2">
+          <button mat-raised-button color="primary" style="float: right;" (click)="submit()" >Submit</button>
+          </div>
+          <button mat-raised-button   (click)="closeDialog()" >Cancel</button>
+          
+          </div>
+        </div>
+      </div>
+    </form>
+    
+  </mat-card>
+
+

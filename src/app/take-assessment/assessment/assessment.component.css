@@ -1,0 +1,14 @@
+button {
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-right: 5px;
+    margin-left: 5px;
+  }
+
+  .centered-text { 
+    text-align: center; 
+  }
+
+  .marginTop{
+      margin-top: 70px;
+  }

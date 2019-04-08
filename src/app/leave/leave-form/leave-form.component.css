@@ -1,0 +1,65 @@
+.full-width {
+  width: 300px;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+
+}
+
+.card-layout {
+  max-width: 1000px;
+  background-color: #ffffff;
+  /* line-height: 1.65; */
+  padding: 20px 5px;
+  display: flex;
+  justify-content: space-between;
+}
+.column-1 {
+  flex: 1;
+  padding: 10px;
+  margin-bottom: 20px;
+  flex-basis: 30%;
+}
+.column-2 {
+  flex: 1;
+  padding: 10px;
+  margin-bottom: 20px;
+  flex-basis: 30%;
+}
+
+.field-reason {
+  width: 300px;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+}
+
+.container {
+  padding-top: 10px;
+  margin-top: 10px;
+}
+
+button:hover {
+  -webkit-transform: translateY(-3px);
+      -ms-transform: translateY(-3px);
+          transform: translateY(-3px);
+  box-shadow: 0 6px 6px 0 rgba(0, 0, 0, 0.2);
+/*
+  transition: all .25s linear;
+    box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.4);
+    box-shadow: -1px 10px 29px 0px rgba(0,0,0,0.8); */
+
+}
+/*
+button:hover{
+  transition: all .40s linear;
+    box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.6);
+} */
+
+
+
+.cancel {
+  /* width: 60%; */
+}
+
+.float-right {
+  float: right;
+}

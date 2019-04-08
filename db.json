@@ -1,0 +1,55 @@
+{
+  "posts": [
+    {
+      "id": 1,
+      "title": "json-server",
+      "author": "typicode"
+    }
+  ],
+  "comments": [
+    {
+      "id": 1,
+      "body": "some comment",
+      "postId": 1
+    }
+  ],
+  "positions": [
+    {
+      "id": 1,
+      "title": "Sr. Programmer",
+      "status": "Open",
+      "requiredExperience": "At least 1 year",
+      "noOfApplicants": 2,
+      "applyingForPosition": "Python Programmer",
+      "startDate": "2019-02-06T18:15:00.000Z",
+      "endDate": "2019-02-27T18:15:00.000Z"
+    }
+  ],
+  "applicants": [
+    {
+      "id": 1,
+      "name": "Udbodh Shrestha",
+      "applyingFor": 3,
+      "description": "Atleast 5 Years experience",
+      "stage": "Approved",
+      "resume": "c:\\cva",
+      "email": "udbodh@gmail.com",
+      "phone": "9841797035",
+      "appliedDate": "2019-02-03T18:15:00.000Z",
+      "remarks": "not very good nor bad"
+    }
+  ],
+  "file-upload": [],
+  "interviewers": [
+    {
+      "id": 1,
+      "name": "Binod Khatri",
+      "personalDetails": "Sr. Software Engineer - RizePoint",
+      "dueDate": "2019-02-20T18:15:00.000Z"
+    }
+  ],
+  
+  "profile": {
+    "name": "typicode"
+  }
+}

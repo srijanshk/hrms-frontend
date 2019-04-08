@@ -1,0 +1,57 @@
+<mat-card class="leave-card">
+
+  <mat-icon class="close" (click)="onCancel()">close</mat-icon>
+
+  <form [formGroup]="leaveForm">
+      <div class="card-layout">
+      <div class="column-1">
+    <mat-form-field class="full-width">
+      <mat-label>Choose a Leave Type</mat-label>
+      <mat-select formControlName="leave_type" required>
+        <mat-option *ngFor="let leave of leaves" [value]="leave.value">{{leave.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+    <br>
+
+    <mat-form-field class="full-width">
+        <input matInput [matDatepickerFilter]="myFilter1" [matDatepicker]="picker1" placeholder="Choose a start date"
+          [formControl]="start_date" id="start_date">
+        <mat-datepicker-toggle matSuffix [for]="picker1">
+        </mat-datepicker-toggle>
+        <mat-datepicker #picker1></mat-datepicker>
+      </mat-form-field>
+
+      <br>
+          <mat-checkbox [formControl]="noOfDays" (change)="checkboxValue($event)" required>Confirm Dates </mat-checkbox>
+       
+  </div>
+  <div class="column-2">
+
+      <mat-form-field style="width: 300px;" class="field-reason">
+          <textarea matInput placeholder="Leave Reason" formControlName="description"></textarea>
+        </mat-form-field>
+
+
+    <mat-form-field class="full-width">
+      <input matInput [matDatepickerFilter]="myFilter2" [matDatepicker]="picker2" placeholder="Choose an end date"
+        [formControl]="end_date" id="end_date">
+      <mat-datepicker-toggle matSuffix [for]="picker2">
+      </mat-datepicker-toggle>
+      <mat-datepicker #picker2></mat-datepicker>
+    </mat-form-field>
+<br>
+    <label class="float-right" *ngIf='checked'>Total Leave : {{calculateNoOfDays(value)}} Days </label>
+
+  </div>
+</div>
+ 
+
+    <div>
+      <button mat-raised-button color="primary" (click)="onSubmit()">Submit Leave</button>
+      <button mat-raised-button color="warn" style="float:right" (click)="onCancel()">Cancel</button>
+    </div>
+
+  </form>
+
+</mat-card>

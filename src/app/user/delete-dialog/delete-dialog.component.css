@@ -1,0 +1,7 @@
+.col-1 {
+    flex: 1;
+    padding: 10px;
+    margin-bottom: 20px;
+    flex-basis: 30%;
+    align-content: center;
+  }

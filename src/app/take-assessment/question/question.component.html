@@ -1,0 +1,18 @@
+<span>Questions {{question.questionId}}/{{totalQuestions}}</span>
+<span><div class="badge badge-info float-right">Time: {{time}} / {{question.time}} Seconds</div>
+</span>
+<span>
+<h3 class="font-weight-normal">{{question.questionId}}.
+  <span [innerHTML]="question.question"></span>
+</h3>
+<div>
+  <div *ngFor="let option of question.answers">
+    <div> 
+      <label class="font-weight-normal" >
+        <input id="{{option}}" type="radio" name="answer"  (change)="onSelect(option, question.correctAnswer)" />
+          {{option}}
+      </label> 
+    </div>
+  </div>
+</div> 
+</span>

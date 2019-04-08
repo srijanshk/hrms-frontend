@@ -1,0 +1,65 @@
+<mat-card class="mat-elevation-z8">
+
+  <mat-icon class="close" (click)="closeDialog()" >close</mat-icon>
+<section class="mat-typography">
+      <h2>Position</h2>
+    </section>
+  <form [formGroup]="service.form"  (submit)="onSubmit()">
+  <div class="card-layout">
+  <div class="column-1">
+   <input type="hidden" formControlName="id">
+   <mat-form-field style="width: 300px;" class="field-reason">
+     <input matInput placeholder="Position Title"  formControlName="title">
+   </mat-form-field>
+   <br>
+    <mat-form-field class="full-width">
+      <mat-label>Status</mat-label>
+      <mat-select formControlName="status" required>
+        <mat-option *ngFor="let a of statusList" [value]="a.value">{{a.viewValue}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+   <!--<mat-form-field style="width: 300px;" class="field-reason">
+     <input matInput placeholder="Status"  formControlName="status">
+   </mat-form-field>-->
+   
+   <br>
+     <mat-form-field style="width: 300px;" class="field-reason">
+     <input matInput placeholder="Required Experience"  formControlName="requiredExperience">
+   </mat-form-field>
+   
+   </div>
+  <div class="column-2">
+<mat-form-field  class="field-reason">
+     <input type="number" matInput placeholder="No. Of Applicants"  formControlName="noOfApplicants">
+   </mat-form-field>
+   <br>
+   <mat-form-field style="width: 300px;" class="field-reason">
+     <input matInput placeholder="Applying for Position"  formControlName="applyingForPosition">
+   </mat-form-field>
+   <br>
+   <mat-form-field style="width: 300px;" class="full-width">
+     <input matInput [matDatepicker]="startDatePicker"
+      placeholder="Opening Date" formControlName="startDate">
+        <mat-datepicker-toggle matSuffix [for]="startDatePicker">
+          </mat-datepicker-toggle>
+        <mat-datepicker #startDatePicker></mat-datepicker>
+   </mat-form-field>
+   <br>
+   <mat-form-field style="width: 300px;" class="full-width">
+     <input matInput [matDatepicker]="endDatePicker"
+      placeholder="Last Date" formControlName="endDate">
+        <mat-datepicker-toggle matSuffix [for]="endDatePicker">
+          </mat-datepicker-toggle>
+        <mat-datepicker #endDatePicker></mat-datepicker>
+   </mat-form-field>
+   </div>
+</div>
+<div>
+      <button mat-raised-button type="submit" >Submit</button> 
+       <button mat-raised-button (click) ="clearForm()" >Clear</button>
+      <button mat-raised-button   (click)="closeDialog()" >Cancel</button>
+ </div>
+  </form>
+
+</mat-card>

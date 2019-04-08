@@ -1,0 +1,41 @@
+
+
+<div class="wrapper">
+
+  <br>
+  <mat-card class="loginpage">
+   <mat-card-header class="text-center">
+     <h3>
+       <strong class="app-name">Seva HRMS Sign</strong>
+     </h3>
+   </mat-card-header>
+    <mat-divider></mat-divider>
+    <br><br>
+    <div class="content">
+    <form [formGroup]="loginForm" (ngSubmit)= "onSubmit(email.value, password.value)" class="login-form" style="color: #757575;">
+      <mat-form-field class="fullwidth">
+        <input matInput placeholder= "Email" id="email" formControlName="email"  type="text" #email required >
+       <mat-error align="start" *ngIf="formErrors.email" class="form__error">{{ formErrors.email }}</mat-error>
+      </mat-form-field>
+      <br>
+      <br>
+      <mat-form-field class= "fullwidth">
+        <input matInput placeholder= "Password"  formControlName="password" [type]="hide ? 'password' : 'text'" required   #password >
+        <mat-error align="start" *ngIf="formErrors.password" class="form__error">{{ formErrors.password }}</mat-error>
+        <mat-icon matSuffix (click)="hide = !hide">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </mat-form-field>
+      <br><br>
+      <mat-checkbox color="primary">Remember Me</mat-checkbox>
+      <mat-divider></mat-divider>
+      <mat-card-content>
+          <a routerLink="/forgetpassword">Forget Password</a>
+      </mat-card-content>
+<div>
+  <button type="submit" class="button" name="login-button" mat-raised-button color="primary">Login</button>
+</div>
+
+    </form>
+  </div>
+  </mat-card>
+
+</div>

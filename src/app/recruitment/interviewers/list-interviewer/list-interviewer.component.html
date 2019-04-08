@@ -1,0 +1,53 @@
+<mat-card class="list-interviewer">
+    <button mat-raised-button (click) ="onCreate()"><mat-icon>add</mat-icon>Add Interviewer</button>
+    
+    <mat-form-field>
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+    </mat-form-field>
+  <mat-card-content>
+
+<div class="mat-elevation-z8">
+
+    <mat-table [dataSource] = "interviewersource" matSort >
+      <ng-container  matColumnDef="sn"><input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> SN. </mat-header-cell>
+        <mat-cell *matCellDef="let interviewer; let i = index;"> {{i+1+(pageSize*pageIndex)}} </mat-cell>
+      </ng-container>
+      <ng-container  matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell> 
+        <mat-cell *matCellDef= "let interviewer" > {{interviewer.name}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="personalDetails">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Personal Details </mat-header-cell>
+        <mat-cell *matCellDef= "let interviewer"> {{interviewer.personalDetails}} </mat-cell>
+      </ng-container>
+    <ng-container matColumnDef="dueDate">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Due Date</mat-header-cell>
+        <mat-cell *matCellDef= "let interviewer"> {{interviewer.dueDate | date: 'MMM dd, y' : 'UTC'}} </mat-cell>
+      </ng-container>
+       <ng-container matColumnDef="edit">
+         <mat-header-cell *matHeaderCellDef> Edit </mat-header-cell>
+         <mat-cell *matCellDef="let interviewer">
+           <button mat-icon-button (click)="onEdit(interviewer)"><mat-icon>launch</mat-icon></button>
+         </mat-cell>
+       </ng-container>
+       <ng-container matColumnDef="delete">
+         <mat-header-cell *matHeaderCellDef> Delete </mat-header-cell>
+         <mat-cell *matCellDef="let interviewer">
+            <button mat-icon-button (click)="onDelete(interviewer.id)" class="btn btn-block btn-sm btn-info">
+             <mat-icon>delete</mat-icon>
+            </button>  
+         </mat-cell>
+       </ng-container>
+      
+      
+      
+      <mat-header-row  *matHeaderRowDef="displayedColums"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColums;"></mat-row>
+    </mat-table>
+
+<mat-paginator [pageSizeOptions]="[5, 10, 20, 50]" showFirstLastButtons (page)="onPaginateChange($event)"></mat-paginator>
+</div>
+</mat-card-content>
+</mat-card>
+

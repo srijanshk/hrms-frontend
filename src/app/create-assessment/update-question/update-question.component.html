@@ -1,0 +1,88 @@
+<div class="container-fluid">
+  <form [formGroup]="updateQuestionForm" autocomplete="off" novalidate (ngSubmit)="updatedQuestion(updateQuestionForm.value)">
+    <div class="form-horizontal well">
+ 
+      <div class="form-group">
+        <label for="question" class="control-label col-md-2">Question: </label>
+        <div class="col-md-5">
+          <textarea type="text" formControlName="question" id="question" class="form-control" ></textarea>
+        </div>
+        <div class="col-md-5">
+          <em *ngIf="validateControl('question') && hasError('question', 'required')">question is required</em>
+        </div>
+      </div>
+
+      <div *ngIf="multichoice == true">
+          <div class="form-group">
+            <label for="answer1" class="control-label col-md-2">Answers: </label>
+            <div class="col-md-5">
+              <input type="text" formControlName="answer1" id="answer1" class="form-control"/>
+            </div>
+            <div class="col-md-5">
+              <em *ngIf="validateControl('answer1') && hasError('answer1', 'required')">answer1 is required</em>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="answer2" class="control-label col-md-2"></label>
+            <div class="col-md-5">
+              <input type="text" formControlName="answer2" id="answer2" class="form-control"/>
+            </div>
+            <div class="col-md-5">
+              <em *ngIf="validateControl('answer2') && hasError('answer2', 'required')">answer2 is required</em>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="answer3" class="control-label col-md-2"></label>
+            <div class="col-md-5">
+              <input type="text" formControlName="answer3" id="answer3" class="form-control"/>
+            </div>
+            <div class="col-md-5">
+              <em *ngIf="validateControl('answer3') && hasError('answer3', 'required')">answer3 is required</em>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="answer4" class="control-label col-md-2"></label>
+            <div class="col-md-5">
+              <input type="text" formControlName="answer4" id="answer4" class="form-control"/>
+            </div>
+            <div class="col-md-5">
+              <em *ngIf="validateControl('answer4') && hasError('answer4', 'required')">answer4 is required</em>
+            </div>
+          </div>
+        </div>
+ 
+      <div class="form-group">
+        <label for="correctAnswer" class="control-label col-md-2">correctAnswer: </label>
+        <div class="col-md-5">
+          <input type="text" formControlName="correctAnswer" id="correctAnswer" class="form-control"/>
+        </div>
+        <div class="col-md-5">
+          <em *ngIf="validateControl('correctAnswer') && hasError('correctAnswer', 'required')">correct answer is required</em>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="time" class="control-label col-md-2">time: </label>
+        <div class="col-md-2">
+          <input type="text" formControlName="time" id="time" class="form-control"/>
+        </div>
+        <div class="col-md-5">
+          <em *ngIf="validateControl('time') && hasError('time', 'required')">time is required</em>
+          <em *ngIf="validateControl('time') && hasError('time', 'pattern')">time should be in number</em>
+        </div>
+      </div>
+ 
+      <br><br>
+ 
+      <div class="form-group">
+          <div class="col-md-offset-5 col-md-1">
+              <button type="submit" class="btn btn-success" [disabled]="!updateQuestionForm.valid">Update</button>
+          </div>
+          <div class="col-md-1">
+              <button type="button" class="btn btn-danger" (click)="redirectToQuestionList()">Cancel</button>
+          </div>
+      </div>
+      
+    </div>
+  </form>
+</div>

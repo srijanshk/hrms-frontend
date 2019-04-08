@@ -1,0 +1,68 @@
+<mat-card class="mat-elevation-z8">
+
+  <mat-icon class="close" (click)="closeDialog()" >close</mat-icon>
+<section class="mat-typography">
+      <h2>Applicant</h2>
+    </section>
+  <form [formGroup]="service.form"  (submit)="onSubmit()">
+   <input type="hidden" formControlName="id">
+   <mat-form-field style="width: 300px;" class="field-reason">
+     <input matInput placeholder="Name"  formControlName="name">
+   </mat-form-field>
+   
+   <mat-form-field style="width: 300px;" class="full-width">
+      <mat-label>Applying For Position</mat-label>
+        <mat-select formControlName="applyingFor" required>
+         <mat-option *ngFor="let position of positionList" [value]="position.id">{{position.name}}
+           </mat-option>
+     </mat-select>
+   </mat-form-field>
+
+   <!--<mat-form-field style="width: 300px;" class="field-reason">
+     <input matInput placeholder="Applying For"  formControlName="applyingFor">
+   </mat-form-field>-->
+   <br>
+   <mat-form-field style="width: 300px;" class="field-reason">
+     <textarea matInput placeholder="Description"  formControlName="description"></textarea>
+   </mat-form-field>
+   
+     <mat-form-field style="width: 300px;" class="field-reason">
+     <input matInput placeholder="Stage"  formControlName="stage">
+   </mat-form-field>
+   <br>
+    <mat-form-field style="width: 300px;" class="field-reason">
+     <input matInput placeholder="Resume"  formControlName="resume">
+   </mat-form-field>
+   
+   <mat-form-field style="width: 300px;" class="field-reason">
+     <input matInput placeholder="Email"  formControlName="email">
+   </mat-form-field>
+   <br>
+   <mat-form-field style="width: 300px;" class="field-reason">
+     <input matInput placeholder="Phone" (keypress)="keyPress($event)" minlength=10 maxlength=10  formControlName="phone">
+   </mat-form-field>
+   
+    <mat-form-field style="width: 300px;" class="full-width">
+     <input matInput [matDatepicker]="appliedDatePicker"
+      placeholder="Applied Date" formControlName="appliedDate">
+        <mat-datepicker-toggle matSuffix [for]="appliedDatePicker">
+          </mat-datepicker-toggle>
+        <mat-datepicker #appliedDatePicker></mat-datepicker>
+   </mat-form-field>
+
+  <!-- <mat-form-field style="width: 300px;" class="field-reason">
+     <input matInput placeholder="Applied Date"  formControlName="appliedDate">
+   </mat-form-field>-->
+   <br>
+   <mat-form-field style="width: 300px;" class="field-reason">
+     <textarea matInput placeholder="Remarks"  formControlName="remarks"></textarea>
+   </mat-form-field>
+   <br><br>
+
+      <button mat-raised-button type="submit" >Submit</button> 
+       <button mat-raised-button (click) ="clearForm()" >Clear</button>
+      <button mat-raised-button   (click)="closeDialog()" >Cancel</button>
+
+  </form>
+
+</mat-card>

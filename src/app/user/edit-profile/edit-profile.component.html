@@ -1,0 +1,390 @@
+<mat-vertical-stepper [linear]="islinear" #stepper style="padding: 0 0 100px;">
+    <mat-step [stepControl]="officialinfo">
+      <form [formGroup]="officialinfo">
+        <ng-template matStepLabel>Office Information</ng-template>
+        <div class="card-layout">
+          <div class="column-1">
+            <mat-form-field class="fullwidth" disabled>
+              <mat-label>Full Name</mat-label>
+              <input matInput fullname="fullname" formControlName="fullname" #fullname />
+            </mat-form-field>
+            <br />
+            <mat-form-field class="fullwidth">
+              <mat-label>E-mail</mat-label>
+              <input matInput email="email" formControlName="email" #email  />
+            </mat-form-field>
+            <br />
+            <mat-form-field class="fullwidth">
+              <mat-label>Project</mat-label>
+              <input matInput Project="Project" formControlName="Project" #Project  />
+            </mat-form-field>
+            <br />
+            <mat-form-field class="fullwidth">
+              <mat-label>Designation</mat-label>
+              <input matInput post="post" formControlName="post" required #post />
+            </mat-form-field>
+          </div>
+          <div class="column-2">
+            <mat-form-field class="fullwidth">
+              <mat-label>Contact Number</mat-label>
+              <input matInput contactNo="contactNo" formControlName="contactNo" required #contactNo />
+            </mat-form-field>
+            <br />
+            <mat-form-field class="fullwidth">
+              <mat-label>Branch</mat-label>
+              <input matInput branch="branch" formControlName="branch" required #branch />
+            </mat-form-field>
+
+            <br />
+            <mat-form-field class="fullwidth">
+              <mat-label>Line Manager</mat-label>
+              <input matInput lineManager="lineManager" formControlName="lineManager" required #lineManager />
+            </mat-form-field>
+          </div>
+        </div>
+        <div>
+          <button mat-raised-button color="primary" style="float: right;" matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="personalinfo">
+      <form [formGroup]="personalinfo">
+        <ng-template matStepLabel>Personal Information</ng-template>
+        <div class="card-layout">
+          <div class="column-1">
+            <mat-form-field>
+              <input matInput [max]="maxDate" [matDatepicker]="dob" placeholder="Date of birth" DOB="DOB" formControlName="dob"
+                required>
+              <mat-datepicker-toggle matSuffix [for]="dob"></mat-datepicker-toggle>
+              <mat-datepicker #dob></mat-datepicker>
+            </mat-form-field>
+            <br>
+            <mat-form-field class="fullwidth">
+              <mat-label>Emergency Contact Person</mat-label>
+              <input matInput emergenctcontact="emergencycontact" formControlName="emergencycontact" required>
+            </mat-form-field>
+            <br>
+            <mat-form-field class="fullwidth">
+              <mat-label>Permanent Address</mat-label>
+              <input matInput permanentaddress="permanentaddress" formControlName="permanentaddress" required>
+            </mat-form-field>
+            <br>
+            <mat-form-field class="fullwidth">
+              <mat-label>Gender</mat-label>
+              <mat-select gender="gender" formControlName="gender" required>
+                <mat-option value="Male">Male</mat-option>
+                <mat-option value="Female">Female</mat-option>
+                <mat-option value="Others">Others</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <br>
+            <mat-form-field class="fullwidth">
+              <mat-label>Religion</mat-label>
+              <input matInput religion="religion" formControlName="religion" required>
+            </mat-form-field>
+
+
+
+          </div>
+          <div class="column-2">
+            <mat-form-field class="fullwidth">
+              <mat-label>Nationality</mat-label>
+              <input matInput nationality="nationality" formControlName="nationality" required>
+            </mat-form-field>
+            <br>
+            <mat-form-field class="fullwidth">
+              <mat-label>Emergency Contact Number</mat-label>
+              <input matInput emergencycontactno="emergencycontactno" formControlName="emergencycontactno" required>
+            </mat-form-field>
+            <br>
+            <mat-form-field class="fullwidth">
+              <mat-label>Temporary Address</mat-label>
+              <input matInput contact="temporaryaddress" formControlName="temporaryaddress" required>
+            </mat-form-field>
+            <br>
+            <mat-form-field class="fullwidth">
+              <mat-label>Citizenship No.</mat-label>
+              <input matInput citizenshipno="citizenshipno" formControlName="citizenshipno" required>
+            </mat-form-field>
+          </div>
+        </div>
+        <div>
+          <button mat-raised-button color="primary" matStepperPrevious>Back</button>
+          <button mat-raised-button color="primary" style="float: right;" matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="familyinfo">
+      <form [formGroup]="familyinfo">
+        <ng-template matStepLabel>Family Information</ng-template>
+        <div class="card-layout">
+          <div class="column-1">
+            <mat-form-field class="fullwidth">
+              <mat-label>Father Name</mat-label>
+              <input matInput fathername="fathername" formControlName="fathername">
+            </mat-form-field>
+            <br>
+            <mat-form-field class="fullwidth">
+              <mat-label>Family Contact No.</mat-label>
+              <input matInput familycontactno="familycontactno" formControlName="familycontactno" required>
+            </mat-form-field>
+            <div *ngIf="selected">
+              <mat-form-field class="fullwidth" *ngIf="selected == 'Married'">
+                <mat-label>Spouse</mat-label>
+                <input matInput spouse="spouse" formControlName="spouse">
+              </mat-form-field>
+            </div>
+          </div>
+          <div class="column-2">
+            <mat-form-field class="fullwidth">
+              <mat-label>Mother Name</mat-label>
+              <input matInput mothername="mothername" formControlName="mothername">
+            </mat-form-field>
+            <br>
+            <mat-form-field class="fullwidth">
+              <mat-label>Status</mat-label>
+              <mat-select [(value)]="selected" status="status" formControlName="status" required>
+                <mat-option value="Married">Married</mat-option>
+                <mat-option value="UnMarried">UnMarried</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <br>
+            <div *ngIf="selected">
+              <mat-form-field class="fullwidth" *ngIf="selected == 'Married'">
+                <mat-label>Children Name</mat-label>
+                <input matInput childname="childname" formControlName="childname">
+              </mat-form-field>
+            </div>
+          </div>
+        </div>
+        <div>
+          <button mat-raised-button color="primary" matStepperPrevious>Back</button>
+          <button mat-raised-button color="primary" style="float: right;" matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="medicalinfo">
+      <form [formGroup]="medicalinfo">
+        <ng-template matStepLabel>Medical History</ng-template>
+        <div class="card-layout">
+          <div class="column-1">
+            <mat-form-field class="fullwidth">
+              <mat-label>Blood Group</mat-label>
+              <mat-select bloodGroup="bloodGroup" formControlName="bloodGroup" required>
+                <mat-option *ngFor="let blood of blood" [value]="blood.value">
+                  {{blood.viewValue}}
+                </mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="column-2">
+            <mat-form-field class="formfield">
+              <textarea matInput placeholder="Medical History" type="" formControlName="medicalHistory" required></textarea>
+            </mat-form-field>
+          </div>
+        </div>
+
+        <div>
+          <button mat-raised-button color="primary" matStepperPrevious>Back</button>
+          <button mat-raised-button color="primary" style="float: right;" matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="educationinfo">
+      <form [formGroup]="educationinfo" style="padding: 0px 0px 100px 0px!important;">
+        <ng-template matStepLabel>Educational Information</ng-template>
+        <div formArrayName="education" *ngFor="let education of educationinfo.get('education')['controls']; let i= index;">
+          <div [formGroupName]="i">
+            <div class="card-layout">
+              <div class="column-1">
+                <mat-form-field>
+                  <input matInput placeholder="Institution Name" type="text" formControlName="institutionName" required>
+                </mat-form-field>
+                <br>
+                <mat-form-field>
+                  <input matInput placeholder="Year Graduated" formControlName="yearGraduated" required>
+                </mat-form-field>
+                <br>
+                <mat-form-field>
+                  <input matInput placeholder="Faculty" type="text" formControlName="faculty" required>
+                </mat-form-field>
+              </div>
+              <div class="column-2">
+                <mat-form-field>
+                  <input matInput placeholder="Level" type="text" formControlName="level" required>
+                </mat-form-field>
+                <br>
+                <mat-form-field>
+                  <input matInput placeholder="Board" type="text" formControlName="board" required>
+                </mat-form-field>
+                <br>
+                <button type="button" *ngIf="educationinfo.get('education').length > 1" button mat-mini-fab
+                  color="warn" (click)="removeEducation(i)">
+                  <mat-icon>delete forever</mat-icon>
+                </button>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+        <button type="button" mat-raised-button (click)="addEducation(education)">
+          <mat-icon>add box</mat-icon>
+        </button>
+
+        <div>
+
+          <button mat-raised-button color="primary" matStepperPrevious>Back</button>
+          <button mat-raised-button color="primary" style="float: right;" matStepperNext>Next</button>
+        </div>
+
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="experienceinfo">
+      <form [formGroup]="experienceinfo" style="padding: 0px 0px 100px 0px!important;">
+        <ng-template matStepLabel>Experience </ng-template>
+        <div formArrayName="experience" *ngFor="let experience of experienceinfo.get('experience')['controls']; let j= index;">
+          <div [formGroupName]="j">
+            <div class="card-layout">
+              <div class="column-1">
+                <mat-form-field>
+                  <input matInput placeholder="Company Name" type="text" formControlName="company">
+                </mat-form-field>
+                <br>
+                <mat-form-field>
+                  <input matInput [matDatepicker]="fromYear" placeholder="From Year" From="From" formControlName="fromYear">
+                  <mat-datepicker-toggle matSuffix [for]="fromYear"></mat-datepicker-toggle>
+                  <mat-datepicker #fromYear></mat-datepicker>
+                </mat-form-field>
+                <br>
+                <mat-form-field>
+                  <input matInput placeholder="Reference" type="text" formControlName="refrence">
+                </mat-form-field>
+              </div>
+              <div class="column-2">
+                <mat-form-field>
+                  <input matInput placeholder="Designation" type="text" formControlName="degination">
+                </mat-form-field>
+                <br>
+                <mat-form-field>
+                  <input matInput [matDatepicker]="toYear" placeholder="To Year" To="To" formControlName="toYear">
+                  <mat-datepicker-toggle matSuffix [for]="toYear"></mat-datepicker-toggle>
+                  <mat-datepicker #toYear></mat-datepicker>
+                </mat-form-field>
+                <br>
+                <button type="button"  button mat-mini-fab
+                  color="warn" (click)="removeExperience(j)">
+                  <mat-icon>delete forever</mat-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button type="button" mat-raised-button (click)="addExperience(experience)">
+          <mat-icon>add box</mat-icon>
+        </button>
+
+        <div>
+
+          <button mat-raised-button color="primary" matStepperPrevious>Back</button>
+          <button mat-raised-button color="primary" style="float: right;" matStepperNext>Next</button>
+        </div>
+
+      </form>
+    </mat-step>
+
+    <mat-step [stepControl]="certificationAndTraininginfo">
+      <form [formGroup]="certificationAndTraininginfo" style="padding: 0px 0px 100px 0px!important;">
+        <ng-template matStepLabel>Certification and Training</ng-template>
+        <div formArrayName="certification" *ngFor="let certification of certificationAndTraininginfo.get('certification')['controls']; let k=index;">
+          <div [formGroupName]="k">
+
+
+            <div class="card-layout">
+              <div class="column-1">
+                <mat-form-field>
+                  <input matInput placeholder="Course Taken" type="text" formControlName="coursetaken" >
+                </mat-form-field>
+              </div>
+              <div class="column-2">
+                <mat-form-field>
+                  <input matInput [matDatepicker]="dateofcompletion" placeholder="Date of Completion" To="To"
+                    formControlName="dateofcompletion" >
+                  <mat-datepicker-toggle matSuffix [for]="dateofcompletion"></mat-datepicker-toggle>
+                  <mat-datepicker #dateofcompletion></mat-datepicker>
+                </mat-form-field>
+                <br>
+                <button type="button"
+                  button mat-mini-fab color="warn" (click)="removeCertification(k)">
+                  <mat-icon>delete forever</mat-icon>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button type="button" mat-raised-button (click)="addCertification(certification)">
+          <mat-icon>add box</mat-icon>
+        </button>
+        <div>
+          <button mat-raised-button color="primary" matStepperPrevious>Back</button>
+          <button mat-raised-button color="primary" style="float: right;" matStepperNext>Next</button>
+        </div>
+      </form>
+    </mat-step>
+    <mat-step [stepControl]="socialmediainfo" >
+      <form [formGroup]="socialmediainfo" style="padding: 0 0 100px;">
+        <ng-template matStepLabel>Social Media Info</ng-template>
+        <div class="card-layout">
+          <div class="column-1">
+            <mat-form-field class="fullwidth">
+              <mat-label>Facebook</mat-label>
+              <input matInput facebook="facebook" formControlName="facebook" />
+              <i matPrefix class="fab fa-facebook-f"></i>
+            </mat-form-field>
+
+            <br>
+            <mat-form-field class="fullwidth">
+              <mat-label>Twitter</mat-label>
+              <input matInput twitter="twitter" formControlName="twitter" />
+              <i matPrefix class="fab fa-twitter"></i>
+            </mat-form-field>
+
+            <br>
+
+            <mat-form-field class="fullwidth">
+              <mat-label>Github</mat-label>
+              <input matInput github="github" formControlName="github" />
+              <i matPrefix class="fab fa-github"></i>
+            </mat-form-field>
+          </div>
+          <div class="column-2">
+            <mat-form-field class="fullwidth">
+              <mat-label>Instagram</mat-label>
+              <input matInput facebook="instagram" formControlName="instagram" />
+              <i matPrefix class="fab fa-instagram"></i>
+            </mat-form-field>
+
+            <br>
+            <mat-form-field class="fullwidth">
+              <mat-label>Linkedin</mat-label>
+              <input matInput linkedin="linkedin" formControlName="linkedin" />
+              <i matPrefix class="fab fa-linkedin-in"></i>
+            </mat-form-field>
+
+            <br>
+            <mat-form-field class="fullwidth">
+              <mat-label>Skype</mat-label>
+              <input matInput skype="skype" formControlName="skype" />
+              <i matPrefix class="fab fa-skype"></i>
+            </mat-form-field>
+
+          </div>
+        </div>
+        <div>
+          <button mat-raised-button color="primary" matStepperPrevious>Back</button>
+          <button mat-raised-button color="primary" style="float: right;" (click)="updateProfile()" matStepperNext>Submit</button>
+        </div>
+      </form>
+    </mat-step>
+  </mat-vertical-stepper>

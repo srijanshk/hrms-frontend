@@ -1,0 +1,18 @@
+.my-form{
+    min-width: 120px;
+    max-width: 490px;
+    width: 50%;
+  
+  }
+  .full-width {
+    width: 100%;
+  }
+  table {
+    width: 100%;
+  }
+ .filter {
+     left : 5px;
+ }
+ .styles {
+     left: 20px;
+ }

@@ -1,0 +1,12 @@
+<div>
+  <hr />
+    <div *ngFor="let question of filteredQuestions;">
+        <app-question [totalQuestions]="totalQuestions" (messageEvent)="receiveMessage($event)" (timeEvent)="receiveTime($event)"  [question]="question" ></app-question>
+    </div>
+  <div class="text-center">
+    <button class="btn btn-lg btn-primary" (click)="next(index, 'next')"  [disabled]="!NextButtonAvailable">Next</button>
+    <button class="btn btn-default" (click)="next(index)">Skip</button>
+    <p>Total point is: {{total}} </p>
+  </div>
+  <hr /> 
+</div>

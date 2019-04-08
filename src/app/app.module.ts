@@ -1,81 +1,58 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import { HTTP_INTERCEPTORS, HttpClientModule, HttpClientJsonpModule } from '@angular/common/http';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { RegisterComponent } from './register/register.component';
-import { UserService } from './services/user.service';
-import { FormService } from './services/form';
-import {
-  MatToolbarModule,
-  MatFormFieldModule,
-  MatInputModule,
-  MatOptionModule,
-  MatSelectModule,
-  MatIconModule,
-  MatButtonModule,
-  MatCardModule,
-  MatTableModule,
-  MatDividerModule,
-  MatSnackBarModule,
-  MatTabsModule,
-  MatDatepickerModule,
-
-} from '@angular/material';
-import { LoginComponent } from './login/login.component';
-import { DashboardComponent } from './dashboard/dashboard.component';
-import { AuthGuard } from './guards/auth.guard';
-import { AuthenticationService } from './service/authentication.service';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+import { LoginComponent } from './auth/login/login.component';
+import { CustomValidators } from './shared/services/custom_validators';
 import { JwtInterceptor, ErrorInterceptor } from './Helpers';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { CustomValidators } from './service/custom_validators';
-
-import { FormServices } from './service/form';
-import { ProfileupdateComponent } from './profiles/profileupdate/profileupdate.component';
-
-
+import { CustomMaterialModule } from './core/material.module';
+import { AuthGuard } from './guards/auth.guard';
+import { RoleGuard } from './guards/role.guard';
+import { ForgetpasswordComponent } from './auth/forgetpassword/forgetpassword.component';
+import { ResetPasswordComponent } from './auth/reset-password/reset-password.component';
+import { ChangepasswordComponent } from './auth/changepassword/changepassword.component';
+import { DashboardComponent } from './shared/dashboard/dashboard.component'
+import { AuthenticationService } from './shared/services/authentication.service';
+import { FormServices } from './shared/services/form';
+import { EnvironmentUrlService } from './shared/services/environment-url.service';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    RegisterComponent,
-    DashboardComponent,
+    PageNotFoundComponent,
     LoginComponent,
-    ProfileupdateComponent
+    ForgetpasswordComponent,
+    ResetPasswordComponent,
+    ChangepasswordComponent,
+    DashboardComponent,
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
-    BrowserAnimationsModule,
-    FormsModule,
     ReactiveFormsModule,
-    MatToolbarModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatOptionModule,
-    MatSelectModule,
-    MatIconModule,
-    MatButtonModule,
-    MatCardModule,
-    MatTableModule,
-    MatDividerModule,
-    MatSnackBarModule,
-    MatTabsModule,
-    MatDatepickerModule,
+    FormsModule,
+    HttpClientJsonpModule,
+    CustomMaterialModule
 
   ],
   providers: [
-  UserService,
     AuthGuard,
+    RoleGuard,
     AuthenticationService,
     CustomValidators,
     FormServices,
-    FormService,
     { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true }
+    { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    EnvironmentUrlService
   ],
   bootstrap: [AppComponent]
 })
