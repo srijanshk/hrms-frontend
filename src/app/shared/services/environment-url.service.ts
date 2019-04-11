@@ -8,6 +8,7 @@ export class EnvironmentUrlService {
 
   public userUrl: string = environment.userUrl;
   public recruitmentUrl: string = environment.recruitmentUrl;
+  public uploadUrl: string = environment.uploadUrl;
 
   constructor() { }
 }

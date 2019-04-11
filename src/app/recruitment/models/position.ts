@@ -4,7 +4,6 @@ export class Position {
   status: string;
   requiredExperience: string;
   noOfApplicants: string;
-  applyingForPosition: string;
   startDate: Date;
   endDate: Date;
 }

@@ -15,8 +15,8 @@ export class LeaveMainComponent implements OnInit {
 
   public role: String;
   public leaveData: any;
-  public pageSize: number = 10;
-  public pageIndex: number = 0;
+  public pageSize = 10;
+  public pageIndex = 0;
   public displayedColumns = ['sn', 'leaveType', 'description', 'leaveFrom', 'leaveTo', 'appliedOn', 'leaveStatus'];
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -31,10 +31,10 @@ export class LeaveMainComponent implements OnInit {
     const currentUser = JSON.parse(localStorage.getItem('currentUser')).user;
     this.role = currentUser.role;
     this.getLeaveData();
-    
+
   }
 
-  getLeaveData() { 
+  getLeaveData() {
     this.leaveApi.getUserLeave()
       .subscribe((data: []) => {
         console.log(data);

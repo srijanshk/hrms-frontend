@@ -2,22 +2,22 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { AuthenticationService } from 'src/app/shared/services/authentication.service';
 import { Router } from '@angular/router';
 import { MatDialog, MatPaginator, MatSort, MatTableDataSource } from '@angular/material';
+import { FormControl } from '@angular/forms';
 
 @Component({
   selector: 'app-list-roles',
   templateUrl: './list-roles.component.html',
   styleUrls: ['./list-roles.component.css']
 })
+
+
 export class ListRolesComponent implements OnInit {
-  public role: String;
   public userData: any;
-  public permission: any[];
-  public pageSize: number = 10;
-  public pageIndex: number = 0;
+  public pageSize = 10;
+  public pageIndex = 0;
   public displayedColumns = ['sn', 'fullname' , 'role', 'permission'];
-  filterValues = {
-    fullname: ''
-  };
+
+  dataSource = new MatTableDataSource();
 @ViewChild(MatPaginator) paginator: MatPaginator;
 @ViewChild(MatSort) sort: MatSort;
 
@@ -29,36 +29,37 @@ export class ListRolesComponent implements OnInit {
    }
 
   ngOnInit() {
-    const currentUser = JSON.parse(localStorage.getItem('currentUser')).user;
-    this.role = currentUser.role;
-    this.permission = currentUser.permission;
+
     this.getUserData();
+    this.dataSource.filterPredicate = (data: Element, filter: string) => {
+      return data.fullname === filter;
+     };
 
   }
 
   getUserData() {
 this.service.getUser()
 .subscribe((res: []) => {
-  this.userData = new MatTableDataSource(res);}
+  this.userData = new MatTableDataSource(res);
+  this.dataSource = this.userData; }
   , errorResponse => {
     console.log(errorResponse);
   }
   , () => {
-  this.userData.paginator = this.paginator;
-  this.userData.sort = this.sort;
-  this.userData.filterPredicate =
-    (data:fullname, filter: string) => !filter || data.filterValue === filter;
+  this.dataSource.paginator = this.paginator;
+  this.dataSource.sort = this.sort;
 
-})
+ });
   }
 
-  applyFilter(filterValue: String) {
 
-    filterValue = filterValue.trim(); // Remove whitespace
-    filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
-    this.userData.filter = filterValue;
-    if (this.userData.paginator) {
-      this.userData.paginator.firstPage();
+
+  applyFilter(filtervalue) {
+    //  filtervalue = filtervalue.trim(); // Remove whitespace
+    //  filtervalue = filtervalue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
+    this.dataSource.filter = filtervalue;
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
     }
   }
 
@@ -67,5 +68,11 @@ this.service.getUser()
     this.pageSize = event.pageSize;
   }
 
-
 }
+
+export interface Element {
+  sn: number;
+  fullname: string;
+  role: string;
+  permission: string;
+ }

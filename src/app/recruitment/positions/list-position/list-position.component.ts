@@ -17,7 +17,7 @@ export class ListPositionComponent implements OnInit {
   public positionsource: any;
   public pageSize: number = 5;
   public pageIndex: number = 0;
-  displayedColums: string[] = ['sn','title', 'status', 'requiredExperience','noOfApplicants','applyingForPosition','startDate','endDate','edit','delete'];
+  displayedColums: string[] = ['sn','title', 'status', 'requiredExperience','noOfApplicants','startDate','endDate','edit','delete'];
   
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;
@@ -35,6 +35,7 @@ export class ListPositionComponent implements OnInit {
   getPosition() {
     this.service.getPositions()
     .subscribe((data: Position[]) => {
+      console.log(data);
       this.positionsource = new MatTableDataSource(data);
       this.positionsource.paginator = this.paginator;
       this.positionsource.sort = this.sort;

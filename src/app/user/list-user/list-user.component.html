@@ -1,5 +1,5 @@
 <mat-card class="list-user" >
-  <div *ngIf = 'isAdmin() || isHR()'>
+  <div *ngIf = 'isAdmin() || hasUserAdmin()'>
     <button mat-button (click) ="navigation()"><mat-icon>add</mat-icon>Add User</button>
     <button mat-button (click) = "disabledUser()"><mat-icon>view</mat-icon>View Disabled Users</button>
 
@@ -11,7 +11,7 @@
 
 <div class="example-container mat-elevation-z8">
 
-  <div *ngIf = '(isEmployeeTable() && isEmployee()) || (isAdminTable() && isAdmin()) || (isManagerTable() && isManager()) || (isHRTable() && isHR())' >
+  <div *ngIf = '(isUser() && hasNormalUser() && isNormaluserTable()) || (isAdminTable() && isAdmin()) || (isUser() && hasUserAdmin() && isUserAdminTable()) || (isUser() && hasViewAdmin() && isViewAdminTable())  ' >
     <table mat-table [dataSource] = "usersource" matSort>
       <ng-container  matColumnDef="sn"><input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
         <th mat-header-cell *matHeaderCellDef mat-sort-header> SN. </th>

@@ -19,7 +19,7 @@ export class ListApplicantComponent implements OnInit {
   public applicantsource: any;
   public pageSize: number = 5;
   public pageIndex: number = 0;
-  displayedColums: string[] = ['sn','name', 'applyingFor','description', 'stage','resume','email','phone','appliedDate','remarks','edit','delete'];
+  displayedColums: string[] = ['sn','photo','name','email','experience','position','interviewer','isEligible','action','view','edit','delete'];
   
   @ViewChild(MatPaginator) paginator: MatPaginator;
   @ViewChild(MatSort) sort: MatSort;

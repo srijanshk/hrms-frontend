@@ -18,7 +18,10 @@ td, th {
 
 .mat-header-cell, .mat-cell{
   width: 10%;
+  justify-content: center;
 }
 
-
-
+.mat-sn{
+  width:5%;
+  justify-content: center;
+}

@@ -57,10 +57,6 @@ export class AuthenticationService {
   }
 
 
-  getUserbyLineManager() {
-    const headers = new HttpHeaders({ 'Authorization': JSON.parse(localStorage.getItem('currentUser')).token});
-    return this.http.get(`${environment.userUrl}/auth/lm`, {headers: headers});
-  }
 
   getDisabledUsers() {
     const headers = new HttpHeaders({ 'Authorization': JSON.parse(localStorage.getItem('currentUser')).token});

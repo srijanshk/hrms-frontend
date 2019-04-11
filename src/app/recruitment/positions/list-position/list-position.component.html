@@ -27,15 +27,10 @@
       </ng-container>
        
        <ng-container matColumnDef="noOfApplicants">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> No. of Applicants </mat-header-cell>
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Applicants Required </mat-header-cell>
         <mat-cell *matCellDef= "let position"> {{position.noOfApplicants}} </mat-cell>
       </ng-container>
 
-      <ng-container matColumnDef="applyingForPosition">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Applying For Position </mat-header-cell>
-        <mat-cell *matCellDef= "let position"> {{position.applyingForPosition}} </mat-cell>
-      </ng-container>
-    
       <ng-container matColumnDef="startDate">
         <mat-header-cell *matHeaderCellDef mat-sort-header>Opening Date </mat-header-cell>
             <mat-cell *matCellDef="let position"> {{position.startDate | date: 'MMM dd, y' : 'UTC'}} </mat-cell>
@@ -46,7 +41,6 @@
             <mat-cell *matCellDef="let position"> {{position.endDate | date: 'MMM dd, y' : 'UTC'}} </mat-cell>
           </ng-container>
 
-     
        <ng-container matColumnDef="edit">
          <mat-header-cell *matHeaderCellDef> Edit </mat-header-cell>
          <mat-cell *matCellDef="let position">

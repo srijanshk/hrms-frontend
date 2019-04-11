@@ -16,12 +16,12 @@
   "positions": [
     {
       "id": 1,
-      "title": "Sr. Programmer",
-      "status": "Open",
-      "requiredExperience": "At least 1 year",
-      "noOfApplicants": 2,
-      "applyingForPosition": "Python Programmer",
-      "startDate": "2019-02-06T18:15:00.000Z",
+      "title": "Intern",
+      "status": "Not Decide",
+      "requiredExperience": "BE completed",
+      "noOfApplicants": 14,
+      "applyingForPosition": "",
+      "startDate": "2019-02-11T18:15:00.000Z",
       "endDate": "2019-02-27T18:15:00.000Z"
     }
   ],
@@ -48,7 +48,6 @@
       "dueDate": "2019-02-20T18:15:00.000Z"
     }
   ],
-  
   "profile": {
     "name": "typicode"
   }

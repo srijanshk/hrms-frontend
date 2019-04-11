@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { DevicelistComponent } from './devicelist/devicelist.component';
 import { AddDeviceComponent } from './add-device/add-device.component'
 import { EditDeviceComponent } from './edit-device/edit-device.component';
-
+import { ListdeviceComponent } from  './listdevice/listdevice.component';
 import { AuthGuard } from '../guards/auth.guard';
 
 const routes: Routes = [
@@ -14,7 +14,10 @@ const routes: Routes = [
     },{
       path:'list',
       component:DevicelistComponent,
-    },
+    },{
+    path:'list-device',
+    component:ListdeviceComponent,
+  },
     {
       path:'device/add',
       component:AddDeviceComponent

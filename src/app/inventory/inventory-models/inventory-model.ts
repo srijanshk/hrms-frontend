@@ -6,4 +6,7 @@ export class InventoryFields {
     device: String;
     startdate: String;
     enddate: String;
+    email: String;
+    userId: string;
+    status: string;
 }

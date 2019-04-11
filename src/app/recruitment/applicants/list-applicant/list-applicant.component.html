@@ -13,49 +13,50 @@
         <mat-header-cell *matHeaderCellDef mat-sort-header> SN. </mat-header-cell>
         <mat-cell *matCellDef="let applicant; let i = index;"> {{i+1+(pageSize*pageIndex)}} </mat-cell>
       </ng-container>
+      <ng-container matColumnDef="photo">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Photo </mat-header-cell>
+        <mat-cell *matCellDef= "let applicant"> {{applicant.photo}} </mat-cell>
+      </ng-container>
       <ng-container  matColumnDef="name">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Name </mat-header-cell> 
         <mat-cell *matCellDef= "let applicant" > {{applicant.name}} </mat-cell>
       </ng-container>
-       <ng-container  matColumnDef="applyingFor">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Applying For </mat-header-cell> 
-        <mat-cell *matCellDef= "let applicant" > {{applicant.applyingFor.name}} </mat-cell>
-      </ng-container>
-      <ng-container matColumnDef="description">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Description </mat-header-cell>
-        <mat-cell *matCellDef= "let applicant"> {{applicant.description}} </mat-cell>
-      </ng-container>
-    <ng-container matColumnDef="stage">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Stage </mat-header-cell>
-        <mat-cell *matCellDef= "let applicant"> {{applicant.stage}} </mat-cell>
-      </ng-container>
-      <ng-container matColumnDef="resume">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Resume </mat-header-cell>
-        <mat-cell *matCellDef= "let applicant"> {{applicant.resume}} </mat-cell>
-      </ng-container>
-    <ng-container matColumnDef="email">
+      <ng-container matColumnDef="email">
         <mat-header-cell *matHeaderCellDef mat-sort-header> Email </mat-header-cell>
         <mat-cell *matCellDef= "let applicant"> {{applicant.email}} </mat-cell>
       </ng-container>
-      <ng-container matColumnDef="phone">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Phone </mat-header-cell>
-        <mat-cell *matCellDef= "let applicant"> {{applicant.phone}} </mat-cell>
+      <ng-container matColumnDef="experience">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Experience </mat-header-cell>
+        <mat-cell *matCellDef= "let applicant"> {{applicant.experience}} </mat-cell>
       </ng-container>
-      <ng-container matColumnDef="appliedDate">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Applied Date </mat-header-cell>
-        <mat-cell *matCellDef= "let applicant"> {{applicant.appliedDate}} </mat-cell>
+    <ng-container matColumnDef="position">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Position </mat-header-cell>
+        <mat-cell *matCellDef= "let applicant"> {{applicant.position.title}} </mat-cell>
       </ng-container>
-      <ng-container matColumnDef="remarks">
-        <mat-header-cell *matHeaderCellDef mat-sort-header> Remarks </mat-header-cell>
-        <mat-cell *matCellDef= "let applicant"> {{applicant.remarks}} </mat-cell>
+      <ng-container matColumnDef="interviewer">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Interviewer </mat-header-cell>
+        <mat-cell *matCellDef= "let applicant"> {{applicant.interviewer.name}} </mat-cell>
       </ng-container>
+      <ng-container matColumnDef="isEligible">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> IsEligible </mat-header-cell>
+        <mat-cell *matCellDef= "let applicant"> {{applicant.isEligible}} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="action">
+        <mat-header-cell *matHeaderCellDef mat-sort-header> Action </mat-header-cell>
+        <mat-cell *matCellDef= "let applicant"> {{applicant.action}} </mat-cell>
+      </ng-container>
+       <ng-container matColumnDef="view">
+         <mat-header-cell *matHeaderCellDef> View </mat-header-cell>
+         <mat-cell *matCellDef="let applicant">
+           <button mat-icon-button (click)="onView(applicant.id)"><mat-icon>pageview</mat-icon></button>
+         </mat-cell>
+       </ng-container>
        <ng-container matColumnDef="edit">
          <mat-header-cell *matHeaderCellDef> Edit </mat-header-cell>
          <mat-cell *matCellDef="let applicant">
-           <button mat-icon-button (click)="onEdit(applicant)"><mat-icon>launch</mat-icon></button>
+           <button mat-icon-button (click)="onEdit(applicant.id)"><mat-icon>launch</mat-icon></button>
          </mat-cell>
        </ng-container>
-             
        <ng-container matColumnDef="delete">
          <mat-header-cell *matHeaderCellDef> Delete </mat-header-cell>
          <mat-cell *matCellDef="let applicant">

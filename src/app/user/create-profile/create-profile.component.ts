@@ -99,7 +99,7 @@ export class CreateProfileComponent implements OnInit {
   public uploadform() {
     this.imageUpload = this.form.group({
       image: new FormControl(null, {validators: [Validators.required]})
-    })
+    });
   }
 
 
@@ -199,12 +199,13 @@ addCertification(): void {
 removeCertification(k: number): void {
   this.certification.removeAt(k);
 }
-onSelectFile(event:any){
+onSelectFile(event: any) {
   if (event.target.files && event.target.files[0]) {
-    var reader = new FileReader();
-    reader.onload =(event: ProgressEvent) =>{
+    const reader = new FileReader();
+    // tslint:disable-next-line:no-shadowed-variable
+    reader.onload = (event: ProgressEvent) => {
       this.imagePreview = (<FileReader>event.target).result;
-    }
+    };
     reader.readAsDataURL(event.target.files[0]);
     this.photo = event.target.files;
   }
@@ -214,9 +215,9 @@ image(files: File[]) {
   this.uploadAndProgress(files);
 }
 
-uploadAndProgress(files: File[]){
-  var formData = new FormData();
-  Array.from(files).forEach(f => formData.append('image',f))
+uploadAndProgress(files: File[]) {
+  const formData = new FormData();
+  Array.from(files).forEach(f => formData.append('image', f));
   this.profileservice.uploadProfileImage(formData)
  .subscribe(
     data => {
@@ -229,7 +230,7 @@ uploadAndProgress(files: File[]){
         duration: 3000,
       });
     }
-  )
+  );
 }
 
 submit() {

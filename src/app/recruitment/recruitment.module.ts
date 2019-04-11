@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import {ReactiveFormsModule, FormsModule} from '@angular/forms'
+import { MatFileUploadModule } from '../shared/fileuploadmaterial/matFileUpload.module';
 
 import { CustomMaterialModule } from '../core/material.module'
 import { RecruitmentRoutingModule } from './recruitment.routing.module'
@@ -35,6 +36,7 @@ import { InterviewerService } from './services/interviewer.service';
     FormsModule,
     CustomMaterialModule,
     RecruitmentRoutingModule,
+    MatFileUploadModule,
   ],
   providers: [
     PositionService,

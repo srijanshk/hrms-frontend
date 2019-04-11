@@ -6,12 +6,14 @@ import { InventoryRoutingModule } from './inventory.routing.module'
 import { AddDeviceComponent } from './add-device/add-device.component'
 import { DevicelistComponent } from './devicelist/devicelist.component';
 import { EditDeviceComponent } from './edit-device/edit-device.component';
+import { ListdeviceComponent } from  './listdevice/listdevice.component';
 
 @NgModule({
   declarations: [
     AddDeviceComponent,
     DevicelistComponent,
-    EditDeviceComponent
+    EditDeviceComponent,
+    ListdeviceComponent
   ],
   imports: [
     CustomMaterialModule,

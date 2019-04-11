@@ -6,7 +6,8 @@ import { Router } from '@angular/router';
 import { MatDialog, MatDialogConfig } from "@angular/material";
 import { InventoryFields } from '../inventory-models/inventory-model';
 import { AddDeviceComponent } from '../add-device/add-device.component';
-import { Roles } from '../inventory-models/roles';
+import { ListdeviceComponent } from '../listdevice/listdevice.component';
+
 
 @Component({
   selector: 'app-devicelist',
@@ -14,14 +15,15 @@ import { Roles } from '../inventory-models/roles';
   styleUrls: ['./devicelist.component.css']
 })
 export class DevicelistComponent implements OnInit {
-  
+
+  public role: String;
   public dataSource: any;
   public pageSize: number = 5;
   public pageIndex: number = 0;
   devices: any;
   // public show: boolean = false;
-  displayedColumns = ['sn', 'applied_by', 'name', 'project', 'device', 'startdate', 'enddate', 'edit', 'delete'];
-  public role = JSON.parse(localStorage.getItem('currentUser')).user.role;
+  displayedColumns = ['sn', 'applied_by', 'project', 'device', 'startdate', 'enddate', 'status'];
+
   // devices: Array<any> = [];
   // deviceId = null;
   // displayForm: boolean = false;
@@ -35,36 +37,24 @@ export class DevicelistComponent implements OnInit {
     private dialog: MatDialog) { }
 
   ngOnInit() {
-
-
     const currentUser = JSON.parse(localStorage.getItem('currentUser')).user;
     this.role = currentUser.role;
     this.getDeviceData();
-    
   }
 
+    // this.getDeviceData();
   getDeviceData() { 
     this.service.getDevices()
       .subscribe((data: []) => {
         console.log(data);
         this.dataSource = new MatTableDataSource(data);
         this.dataSource.paginator = this.paginator;
-        this.fetchdeviceinfo();
+       
       
     
       });
   }
-  rolesInInt(user_role) {
-    if (user_role === 'employee') {
-      return Roles.employee;
-    } else if (user_role === 'hr') {
-      return Roles.hr;
-    } else if (user_role === 'manager') {
-      return Roles.manager;
-    } else if (user_role === 'admin') {
-      return Roles.admin;
-    }
-  }
+
     // const currentUser = JSON.parse(localStorage.getItem('currentUser')).user;
     // this.role = currentUser.role;
     //  console.log(this.role)
@@ -89,13 +79,7 @@ applyFilter(filterValue: string) {
     this.dataSource.filter = filterValue.trim().toLowerCase();
 }
 
-fetchdeviceinfo() {
-  this.service.getDevices().subscribe((data: InventoryFields[]) => {
-        this.dataSource = new MatTableDataSource(data);
-        this.dataSource.paginator = this.paginator;
-        // console.log(this.devices);
-      });
-}
+
 onCreate() {
   
   const dialogConfig = new MatDialogConfig();
@@ -104,6 +88,14 @@ dialogConfig.autoFocus = true;
 dialogConfig.width = "60%";
   this.dialog.open(AddDeviceComponent, dialogConfig);
 }
+openListDevice() {
+  const dialogConfig = new MatDialogConfig();
+  dialogConfig.disableClose = true;
+  dialogConfig.autoFocus = true;
+  dialogConfig.width = "90%";
+    this.dialog.open(ListdeviceComponent, dialogConfig);
+  }
+
 public onDelete(id: string) {
   this.service.deleteDevice(id)
     .subscribe((resp) => {
@@ -113,7 +105,7 @@ public onDelete(id: string) {
         this.devices = this.devices.filter((device) => device.id != id);
       }
     });
-}
+
 }
   // public onSubmit(form: FormGroup) {
   //   location.reload();
@@ -138,13 +130,13 @@ public onDelete(id: string) {
   //   }
   // }
 
-  // public onEdit(id: string) {
-  //   // this.dialog.open(AddDeviceComponent)
-  //   // this.service.getDevice(id)
-  //   //   .subscribe((data) => {
-  //   //     this.service.selectedDevice = data;
-  //   //   });
-  //   return this.router.navigate([`/dashboard/user/profile/view/${id}`]);
+  
+  //   this.dialog.open(AddDeviceComponent)
+  //   this.service.getDevice(id)
+  //     .subscribe((data) => {
+  //       this.service.selectedDevice = data;
+  //     });
+    
   // }
 
   // public updateList(device: any, deviceId) {
@@ -166,7 +158,7 @@ public onDelete(id: string) {
   // }
 
  
-
+}
 
 
 

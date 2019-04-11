@@ -15,6 +15,7 @@ import { DeleteDialogComponent} from '../delete-dialog/delete-dialog.component';
 
 export class ListUserComponent implements OnInit {
   public role: String;
+  public permission: String;
   public usersource: any;
   public displayedColums;
   public pageSize: number = 10;
@@ -36,28 +37,19 @@ export class ListUserComponent implements OnInit {
   ngOnInit() {
    const currentUser = JSON.parse(localStorage.getItem('currentUser')).user;
     this.role = currentUser.role;
+    this.permission = currentUser.permission;
     this.CheckRolesToDisplayTablesAccordingly();
-    this.fetchEmployeeListByManager();
     this.fetchEmployeeListbyOtherRoles();
 
   }
 
   CheckRolesToDisplayTablesAccordingly() {
-    if (this.role === 'manager') {
-      this.fetchEmployeeListByManager();
-    } else  if(this.role === 'admin' || this.role === 'employee'|| this.role ==='hr'){
+    if(this.role === 'admin' || this.permission === 'ViewAdmin' || this.permission === 'NormalUser' || this.permission === 'UserAdmin'){
       this.fetchEmployeeListbyOtherRoles();
     }
   }
 
-  fetchEmployeeListByManager() {
-      this.auth.getUserbyLineManager().subscribe((data: User[]) => {
-      this.usersource = new MatTableDataSource(data);
-      console.log(this.usersource)
-      this.usersource.paginator = this.paginator;
-      this.usersource.sort = this.sort;
-  });
-  }
+
 
   fetchEmployeeListbyOtherRoles(){
     this.auth.getUser()
@@ -85,37 +77,46 @@ export class ListUserComponent implements OnInit {
     return this.role.toLowerCase() === 'admin';
   }
 
-  isManager() {
-    return this.role.toLowerCase() === 'manager';
+  isUser() {
+    return this.role.toLowerCase() === 'user';
 
   }
 
-  isHR() {
-    return this.role.toLowerCase() === 'hr';
+  hasNormalUser() {
+    return this.permission.toLowerCase() === 'NormalUser';
   }
 
-
-  isEmployee() {
-    return this.role.toLowerCase() === 'employee';
+  hasUserAdmin() {
+    return this.permission.toLowerCase() === 'UserAdmin';
   }
+
+  hasProjectAdmin() {
+    return this.permission.toLowerCase() === 'ProjectAdmin';
+  }
+
+  hasViewAdmin() {
+    return this.permission.toLowerCase() === 'ViewAdmin';
+  }
+
 
   isAdminTable() {
     // tslint:disable-next-line:max-line-length
     return this.displayedColums = ['sn', 'fullname', 'email', 'contactNo', 'branch', 'edit', 'view', 'delete', 'reset password'];
   }
-  isManagerTable() {
+  isNormaluserTable() {
     // tslint:disable-next-line:max-line-length
-    return this.displayedColums = ['sn', 'fullname', 'email', 'contactNo', 'branch','edit', 'view', 'delete', 'reset password'];
+    return this.displayedColums = ['sn', 'fullname', 'email', 'contactNo', 'branch', 'view'];
+  }
+  isViewAdminTable() {
+    // tslint:disable-next-line:max-line-length
+    return this.displayedColums = ['sn', 'fullname', 'email', 'contactNo', 'branch', 'view'];
   }
 
-  isHRTable() {
+  isUserAdminTable() {
     // tslint:disable-next-line:max-line-length
     return this.displayedColums = ['sn', 'fullname', 'email','contactNo', 'branch', 'edit', 'view',  'delete', 'reset password'] ;
   }
 
-  isEmployeeTable() {
-    return this.displayedColums = ['sn', 'fullname', 'email', 'contactNo', 'branch', 'view'] ;
-  }
 
   onView(_id: string) {
      this.router.navigate([`/dashboard/user/profile/view/${_id}`]);
@@ -132,7 +133,6 @@ export class ListUserComponent implements OnInit {
     dialogConfig.width = "60%";
     this.dialog.open(DeleteDialogComponent, dialogConfig);
     this.auth.deleteUser(_id).subscribe(() => {
-    this.fetchEmployeeListByManager();
     this.fetchEmployeeListbyOtherRoles();
     });
   }

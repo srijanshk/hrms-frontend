@@ -6,5 +6,6 @@ export const environment = {
   inventoryUrl: 'http://hrms-inventory.sevadev.com',
 
   recruitmentUrl: 'http://hrms-recruitment.sevadev.com',
+  uploadUrl: 'http://hrms-recruitment.sevadev.com/uploader',
 
 };

@@ -4,13 +4,14 @@
 
 export const environment = {
   production: false,
+  //userUrl: 'http://hrms-users.sevadev.com/api',
   userUrl: 'http://localhost:5000/api',
-  //userUrl: 'http://localhost:5000/api',
   leaveApiUrl: 'http://localhost:3000',
   inventoryUrl: 'http://localhost:4000',
-  //recruitmentUrl: 'http://localhost:8000',
+  recruitmentUrl: 'http://localhost:8000',
   // For Dummy content using JSON Server
-   recruitmentUrl: 'http://localhost:3004',
+  //  recruitmentUrl: 'http://localhost:3004',
+  uploadUrl: 'http://localhost:8000/uploader'
 
 };
 

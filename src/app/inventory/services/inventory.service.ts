@@ -44,12 +44,15 @@ export class InventoryService {
       "startdate": device.startdate,
       "enddate": device.enddate,
       "email": email,
-      "userId": userId
+      "userId": userId,
+      "status": device.status
+      
    };
    
     return this.http.post( environment.inventoryUrl + '/devices', JSON.stringify(data) );
     
   }
+  
 
   public putDevice(device: any) {
     let data = {
@@ -66,5 +69,9 @@ export class InventoryService {
 public deleteDevice(id: string) {
   return this.http.delete(`${environment.inventoryUrl + '/devices'}/${id}`);
 }
-
+public approveDevice(id, action) {
+ 
+ const paylods = {id:id, report: action};
+ return this.http.patch( environment.inventoryUrl + '/devices', {params: paylods});
+}
 }
